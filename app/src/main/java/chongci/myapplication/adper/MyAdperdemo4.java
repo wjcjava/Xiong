@@ -12,17 +12,17 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import chongci.myapplication.Bean.BeanOne;
+import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.R;
 
 
-public class MyAdperdemo1 extends BaseAdapter {
+public class MyAdperdemo4 extends BaseAdapter {
     private final Context context;
-    private final List<BeanOne.ListBean> list1;
+    private final List<BeanThree.InteractiveBean> list1;
 
-    public MyAdperdemo1(Context context, List<BeanOne.ListBean> list3) {
+    public MyAdperdemo4(Context context, List<BeanThree.InteractiveBean> list) {
         this.context = context;
-        this.list1 = list3;
+        this.list1 = list;
     }
 
     @Override
@@ -45,11 +45,9 @@ public class MyAdperdemo1 extends BaseAdapter {
         ViewHordle hordle;
         if (convertView == null) {
             hordle = new ViewHordle();
-            convertView = LayoutInflater.from(context).inflate(R.layout.liebiao1, null);
-            hordle.name=convertView.findViewById(R.id.name);
-            hordle.tu=convertView.findViewById(R.id.tu);
-            hordle.time=convertView.findViewById(R.id.time);
-            hordle.shichang1=convertView.findViewById(R.id.shichang1);
+            convertView = LayoutInflater.from(context).inflate(R.layout.liebiao4, null);
+            hordle.name=convertView.findViewById(R.id.name4);
+            hordle.tu=convertView.findViewById(R.id.tu4);
             convertView.setTag(hordle);
 
         } else {
@@ -57,15 +55,11 @@ public class MyAdperdemo1 extends BaseAdapter {
         }
         Glide.with(context).load(list1.get(position).getImage()).error(R.mipmap.ic_launcher).into(hordle.tu);
         hordle.name.setText(list1.get(position).getTitle());
-        hordle.time.setText(list1.get(position).getDaytime());
-        hordle.shichang1.setText(list1.get(position).getVideoLength());
         return convertView;
     }
 
     class ViewHordle {
         ImageView tu;
-        TextView time;
         TextView name;
-        TextView shichang1;
     }
 }

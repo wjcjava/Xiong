@@ -2,6 +2,8 @@ package chongci.myapplication.model;
 
 import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
+import chongci.myapplication.Bean.BeanThree;
+import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import chongci.myapplication.p.PresenterImpl;
 
@@ -31,5 +33,25 @@ public class IModelImpl implements IModel {
                presenter.BeanGet1(bean);
            }
        });
+    }
+
+    @Override
+    public void BeanGet2(String url, final PresenterImpl presenter) {
+        Fengzhuang.getFengzhuang().jiexi3(url, new Fengzhuang.GetBeanjie() {
+            @Override
+            public void jiexi(BeanTwo beanTwo) {
+                presenter.BeanGet2(beanTwo);
+            }
+        });
+    }
+
+    @Override
+    public void BeanGet3(String url, final PresenterImpl presenter) {
+        Fengzhuang.getFengzhuang().jiexi4(url, new Fengzhuang.GetBeanjie1() {
+            @Override
+            public void jiexi1(BeanThree bean) {
+                presenter.BeanGet3(bean);
+            }
+        });
     }
 }

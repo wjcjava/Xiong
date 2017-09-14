@@ -6,48 +6,7 @@
     android:layout_height="match_parent"
     tools:context="chongci.myapplication.MyActivity"
     android:orientation="vertical">
-    <RelativeLayout
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/home_relativeLayout">
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true">
-            <TextView
-                android:id="@+id/tv_panda"
-                android:layout_width="105dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="bottom"
-                android:textSize="20sp"
-                android:textColor="@color/baise"
-                android:background="@drawable/panda_sign" />
-        </FrameLayout>
 
-        <TextView
-            android:id="@+id/tv_person"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:textSize="20sp"
-            android:textColor="@color/baise"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/person_sign" />
-        <TextView
-            android:id="@+id/tv_hudong"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@id/tv_person"
-            android:background="@drawable/hudong_sign"
-            android:textColor="@color/baise"
-            android:textSize="20sp" />
-    </RelativeLayout>
     <LinearLayout
         android:id="@+id/ll"
         android:layout_alignParentBottom="true"
@@ -115,7 +74,7 @@
     </RadioGroup>
     </LinearLayout>
     <FrameLayout
-        android:layout_marginTop="50dp"
+
         android:layout_above="@id/ll"
         android:id="@+id/fragment"
         android:layout_width="match_parent"

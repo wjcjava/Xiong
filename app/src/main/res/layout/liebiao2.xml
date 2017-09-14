@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="100dp">
+    <ImageView
+        android:id="@+id/tu2"
+        android:src="@drawable/panda_sign"
+        android:layout_width="130dp"
+        android:layout_height="100dp" />
+
+        <TextView
+            android:background="@drawable/default_time_view"
+            android:text="TextView"
+            android:textColor="#fff"
+
+            android:drawableLeft="@drawable/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="13dp"
+            android:id="@+id/shichang" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:text="acnfk"
+            android:id="@+id/name2"
+            android:gravity="center|left"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <TextView
+            android:text="ankfK"
+            android:id="@+id/time2"
+            android:layout_width="match_parent"
+            android:gravity="bottom|left"
+            android:layout_height="40dp" />
+    </LinearLayout>
+</LinearLayout>

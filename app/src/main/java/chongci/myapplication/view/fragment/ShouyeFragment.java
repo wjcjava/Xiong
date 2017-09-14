@@ -2,6 +2,7 @@ package chongci.myapplication.view.fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -20,29 +23,35 @@ import java.util.List;
 
 import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
+import chongci.myapplication.Bean.BeanThree;
+import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.R;
+import chongci.myapplication.activity.HudongActivity;
 import chongci.myapplication.adper.MyAdperdemo;
 import chongci.myapplication.adper.MyAdperdemo1;
+import chongci.myapplication.adper.MyAdperdemo2;
+import chongci.myapplication.adper.MyAdperdemo3;
 import chongci.myapplication.p.PresenterImpl;
 import chongci.myapplication.view.IView;
+import chongci.myapplication.widget.MyGridview;
+import chongci.myapplication.widget.MyListview;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShouyeFragment extends Fragment implements IView {
-
+public class ShouyeFragment extends Fragment implements IView, View.OnClickListener {
 
     private List<String> list = new ArrayList<>();
     private List<String> liststring = new ArrayList<>();
-
     private List<Bean.DataBean.BigImgBean> list1 = new ArrayList();
-    private List<Bean.DataBean.PandaliveBean.ListBean> list2=new ArrayList<>();
-    private List<BeanOne.ListBean> list3=new ArrayList<>();
-
+    private List<Bean.DataBean.PandaliveBean.ListBean> list2 = new ArrayList<>();
+    private List<BeanOne.ListBean> list3 = new ArrayList<>();
+    private List<BeanTwo.ListBean> list4 = new ArrayList<>();
+    private List<Bean.DataBean.ChinaliveBean.ListBeanX> list5 = new ArrayList<>();
 
 
     private Banner banner;
-    private TextView textView;
+    private TextView baiyun;
     private Button button2;
     private Button button;
     private GridView grid;
@@ -50,18 +59,30 @@ public class ShouyeFragment extends Fragment implements IView {
     private ImageView tupian;
     private PresenterImpl presenter;
     private ProgressDialog myDialog;
+    private MyListview listview;
+    private MyGridview grid2;
+    private TextView guancha;
+    private TextView xiuchang;
+    private TextView jingcai;
+    private TextView gungun;
+    private TextView zhongguo;
+    private TextView xunshui;
+    private View view0;
+    private View view2;
+    private View view3;
+    private View view4;
+    private PtrClassicFrameLayout ptr;
+    private TextView tv_hudong;
 
     public ShouyeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view1 = inflater.inflate(R.layout.fragment_shouye, container, false);
-
         myDialog = new ProgressDialog(getActivity());
         myDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         myDialog.setTitle("友情提示");
@@ -75,32 +96,88 @@ public class ShouyeFragment extends Fragment implements IView {
         return view1;
     }
 
+
     private void initView(View view1) {
+
         banner = (Banner) view1.findViewById(R.id.banner);
-        textView = (TextView) view1.findViewById(R.id.textView);
+        baiyun = (TextView) view1.findViewById(R.id.baiyun);
+
         button2 = (Button) view1.findViewById(R.id.button2);
         button = (Button) view1.findViewById(R.id.button);
         grid = view1.findViewById(R.id.grid);
         grid1 = view1.findViewById(R.id.grid1);
-
-        //tupian = (ImageView) view1.findViewById(R.id.tupian);
+        tupian = (ImageView) view1.findViewById(R.id.tupian);
+        button.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
         initData();
 
+        listview = (MyListview) view1.findViewById(R.id.listview);
+        grid2 = (MyGridview) view1.findViewById(R.id.grid2);
+        guancha = (TextView) view1.findViewById(R.id.guancha);
+        xiuchang = (TextView) view1.findViewById(R.id.xiuchang);
+        jingcai = (TextView) view1.findViewById(R.id.jingcai);
+        gungun = (TextView) view1.findViewById(R.id.gungun);
+        zhongguo = (TextView) view1.findViewById(R.id.zhongguo);
+        xunshui = (TextView) view1.findViewById(R.id.xunshui);
+        view0 = (View) view1.findViewById(R.id.view1);
+        view2 = (View) view1.findViewById(R.id.view2);
+        view3 = (View) view1.findViewById(R.id.view3);
+        view4 = (View) view1.findViewById(R.id.view4);
+        view0.setVisibility(View.INVISIBLE);
+        view2.setVisibility(View.INVISIBLE);
+        view3.setVisibility(View.INVISIBLE);
+        view4.setVisibility(View.INVISIBLE);
+
+
+        tv_hudong = (TextView) view1.findViewById(R.id.tv_hudong);
+        tv_hudong.setOnClickListener(this);
     }
 
     private void initData() {
+
         presenter = new PresenterImpl(this);
         presenter.BeanGet("http://www.ipanda.com/kehuduan/shouye/index.json");
         presenter.BeanGet1("http://www.ipanda.com/kehuduan/shipinliebieye/jingcaiyike/index.json");
+        presenter.BeanGet2("http://www.ipanda.com/kehuduan/shipinliebieye/video/index.json");
     }
 
 
     @Override
     public void OnSuccess(Bean bean) {
+        myDialog.dismiss();
+        button.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+
+        view0.setVisibility(View.VISIBLE);
+        view2.setVisibility(View.VISIBLE);
+        view3.setVisibility(View.VISIBLE);
+        view4.setVisibility(View.VISIBLE);
+
+        guancha.setText(bean.getData().getPandaeye().getTitle());
+        xiuchang.setText(bean.getData().getPandalive().getTitle());
+        jingcai.setText(bean.getData().getCctv().getTitle());
+        gungun.setText(bean.getData().getList().get(0).getTitle());
+        zhongguo.setText(bean.getData().getChinalive().getTitle());
+
+        button2.setText(bean.getData().getPandaeye().getItems().get(1).getBrief());
+        button.setText(bean.getData().getPandaeye().getItems().get(0).getBrief());
+
+
+        xunshui.setText(bean.getData().getPandaeye().getItems().get(1).getTitle());
+        baiyun.setText(bean.getData().getPandaeye().getItems().get(0).getTitle());
+
+
+        Glide.with(getActivity()).load(bean.getData().getPandaeye().getPandaeyelogo()).into(tupian);
         list1.addAll(bean.getData().getBigImg());
         list2.addAll(bean.getData().getPandalive().getList());
+
+        list5.addAll(bean.getData().getChinalive().getList());
+
         final MyAdperdemo adperdemo = new MyAdperdemo(getActivity(), list2);
         grid.setAdapter(adperdemo);
+
+        final MyAdperdemo3 adperdemo3 = new MyAdperdemo3(getActivity(), list5);
+        grid2.setAdapter(adperdemo3);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -120,6 +197,7 @@ public class ShouyeFragment extends Fragment implements IView {
                 banner.setBannerTitles(liststring);
                 banner.start();
                 adperdemo.notifyDataSetChanged();
+                adperdemo3.notifyDataSetChanged();
 
             }
         });
@@ -129,8 +207,8 @@ public class ShouyeFragment extends Fragment implements IView {
 
     @Override
     public void OnSuccess(BeanOne beanOne) {
-        myDialog.dismiss();
-            list3.addAll(beanOne.getList());
+
+        list3.addAll(beanOne.getList());
         final MyAdperdemo1 adperdemo1 = new MyAdperdemo1(getActivity(), list3);
         grid1.setAdapter(adperdemo1);
         getActivity().runOnUiThread(new Runnable() {
@@ -142,5 +220,32 @@ public class ShouyeFragment extends Fragment implements IView {
         });
     }
 
+    @Override
+    public void OnSuccecc(BeanTwo beanTwo) {
+        list4.addAll(beanTwo.getList());
+        final MyAdperdemo2 adperdemo2 = new MyAdperdemo2(getActivity(), list4);
+        listview.setAdapter(adperdemo2);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adperdemo2.notifyDataSetChanged();
 
+            }
+        });
+    }
+
+    @Override
+    public void OnSuccecc(BeanThree beanThree) {
+
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.tv_hudong:
+        getActivity().startActivity(new Intent(getActivity(), HudongActivity.class));
+                break;
+        }
+    }
 }

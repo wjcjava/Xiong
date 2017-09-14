@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
+import chongci.myapplication.Bean.BeanThree;
+import chongci.myapplication.Bean.BeanTwo;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -57,8 +59,13 @@ public class Fengzhuang {
         void show(BeanOne bean);
 
     }
+    public interface GetBeanjie{
+        void jiexi(BeanTwo beanTwo);
 
-
+    }
+    public interface GetBeanjie1{
+        void jiexi1(BeanThree bean);
+    }
     public void jiexi(String url, final GetBeantu getBeantu) {
 
         final Request request = new Request.Builder().url(url).build();
@@ -134,6 +141,116 @@ public class Fengzhuang {
                     public void run() {
 
                        beatxinxi.show(bean);
+
+                    }
+
+                });
+
+
+            }
+
+        });
+
+
+    }
+
+
+    public void jiexi3(String url, final GetBeanjie beanjie) {
+
+        final Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+
+            @Override
+
+            public void onFailure(Call call, IOException e) {
+
+
+            }
+
+
+            @Override
+
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String bb = response.body().string();
+
+                Gson gson = new Gson();
+
+                final BeanTwo bean = gson.fromJson(bb, BeanTwo.class);
+
+                handler.post(new Runnable() {
+
+                    @Override
+
+                    public void run() {
+
+                       beanjie.jiexi(bean);
+
+                    }
+
+                });
+
+
+            }
+
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void jiexi4(String url, final GetBeanjie1 beanjie1) {
+
+        final Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+
+            @Override
+
+            public void onFailure(Call call, IOException e) {
+
+
+            }
+
+
+            @Override
+
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String bb = response.body().string();
+
+                Gson gson = new Gson();
+
+                final BeanThree bean = gson.fromJson(bb, BeanThree.class);
+
+                handler.post(new Runnable() {
+
+                    @Override
+
+                    public void run() {
+
+                        beanjie1.jiexi1(bean);
 
                     }
 

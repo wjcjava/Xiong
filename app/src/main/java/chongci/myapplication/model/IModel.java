@@ -9,4 +9,6 @@ import chongci.myapplication.p.PresenterImpl;
 public interface IModel {
     void BeanGet(String url , PresenterImpl presenter);
     void BeanGet1(String url, PresenterImpl presenter);
+    void BeanGet2(String url,PresenterImpl presenter);
+    void BeanGet3(String url,PresenterImpl presenter);
 }

@@ -1,14 +1,64 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="chongci.myapplication.view.fragment.ShouyeFragment">
+    tools:context="chongci.myapplication.view.fragment.ShouyeFragment"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/home_relativeLayout">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true">
+            <TextView
+                android:id="@+id/tv_panda"
+                android:layout_width="105dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="bottom"
+                android:textSize="20sp"
+                android:textColor="@color/baise"
+                android:background="@drawable/panda_sign" />
+        </FrameLayout>
+        <com.chanven.lib.cptr.PtrClassicFrameLayout
+            android:id="@+id/ptr"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"/>
+        <TextView
+            android:id="@+id/tv_person"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="@color/baise"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/person_sign" />
+        <TextView
+            android:id="@+id/tv_hudong"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/tv_person"
+            android:background="@drawable/hudong_sign"
+            android:textColor="@color/baise"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1000dp"
         android:orientation="vertical"
         >
+
         <com.youth.banner.Banner
 
             android:id="@+id/banner"
@@ -16,11 +66,12 @@
             android:layout_height="200dp" />
 
         <TextView
+            android:id="@+id/guancha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="15dp"
-            android:text="熊猫观察"
+
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
@@ -30,22 +81,24 @@
 
 
             <TextView
+                android:id="@+id/xunshui"
                 android:textColor="#000"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toRightOf="@+id/button2"
-                android:text="四川洪雅发现野生大熊猫在树上酣睡" />
+                 />
 
             <TextView
+
                 android:textColor="#000"
-                android:id="@+id/textView"
+                android:id="@+id/baiyun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/button2"
                 android:layout_marginBottom="12dp"
                 android:layout_toRightOf="@+id/button"
-                android:text="大熊猫”白云“26岁生日快乐！" />
+                 />
 
             <Button
                 android:id="@+id/button2"
@@ -54,43 +107,45 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/buttonstyle"
-                android:text="出没"
+
                 android:textColor="@color/colorAccent" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="80dp"
                 android:layout_height="40dp"
-
+                android:visibility="gone"
                 android:layout_alignLeft="@+id/button2"
                 android:layout_alignStart="@+id/button2"
-                android:layout_alignTop="@+id/textView"
-                android:background="@drawable/buttonstyle"
-                android:text="庆祝"
-                android:textColor="@color/colorAccent" />
+                android:layout_alignTop="@+id/baiyun"
+                android:background="@drawable/buttonstyle2"
+
+                android:textColor="@color/zidinyi" />
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/tupian"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
-                android:src="@drawable/tab_panda_eye_pressed"
+
                 android:layout_alignTop="@+id/button"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>
         <View
+            android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="10dp"
             android:background="#0D000000" />
 
         <TextView
+            android:id="@+id/xiuchang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
-            android:text="直播秀场"
+
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
@@ -101,17 +156,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp" />
         <View
+            android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="5dp"
             android:background="#0D000000" />
 
         <TextView
+            android:id="@+id/jingcai"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
-            android:text="精彩一刻"
+
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
@@ -124,16 +181,18 @@
 
 
         <View
+            android:id="@+id/view3"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="10dp"
             android:background="#0D000000" />
         <TextView
+            android:id="@+id/gungun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
-            android:text="滚滚视频"
+
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
         <chongci.myapplication.widget.MyListview
@@ -143,19 +202,27 @@
             android:layout_marginTop="3dp" />
 
         <View
+            android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginTop="10dp"
             android:background="#0D000000" />
         <TextView
+            android:id="@+id/zhongguo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
-            android:text="直播中国"
+
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
+        <chongci.myapplication.widget.MyGridview
+            android:id="@+id/grid2"
+            android:numColumns="3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp" />
     </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

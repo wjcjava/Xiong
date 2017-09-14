@@ -36,4 +36,18 @@
         android:layout_alignStart="@+id/name"
         android:layout_marginTop="15dp"
         android:id="@+id/time" />
+
+    <TextView
+        android:background="@drawable/default_time_view"
+        android:text="TextView"
+        android:textColor="#fff"
+
+        android:drawableLeft="@drawable/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+
+        android:id="@+id/shichang1" />
 </RelativeLayout>
