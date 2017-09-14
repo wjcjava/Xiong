@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient android:startColor="#C0F70F2E"  android:endColor="#C0F70F2E" android:angle="90" /><!--背景颜色渐变 angle为渐变角度-->
+    <solid android:color="#00ffffff" /><!-- 背景填充颜色 -->
+    <stroke android:width="3dp" android:color="#C0F70F2E" /><!-- 描边，边框宽度、颜色 -->
+
+</shape>

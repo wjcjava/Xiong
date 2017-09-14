@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="chongci.myapplication.MyActivity"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/home_relativeLayout">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true">
+            <TextView
+                android:id="@+id/tv_panda"
+                android:layout_width="105dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="bottom"
+                android:textSize="20sp"
+                android:textColor="@color/baise"
+                android:background="@drawable/panda_sign" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_person"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="@color/baise"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/person_sign" />
+        <TextView
+            android:id="@+id/tv_hudong"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@id/tv_person"
+            android:background="@drawable/hudong_sign"
+            android:textColor="@color/baise"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/shouye"
+            android:button="@null"
+            android:text="首页"
+            android:background="@drawable/shouye"
+            android:drawableTop="@drawable/tab_home_normal"
+            android:gravity="center"
+
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/guancha"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="熊猫观察"
+            android:drawableTop="@drawable/tab_panda_live_normal"
+
+            android:gravity="center"
+            android:background="@drawable/shouye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/wenhua"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="熊猫文化"
+            android:drawableTop="@drawable/tab_panda_culture_normals"
+            android:gravity="center"
+            android:background="@drawable/shouye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/zhibo"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="熊猫播报"
+            android:drawableTop="@drawable/tab_panda_eye_normal"
+
+            android:gravity="center"
+            android:background="@drawable/shouye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:id="@+id/zhongguo"
+            android:layout_weight="1"
+
+            android:button="@null"
+            android:text="直播中国"
+            android:drawableTop="@drawable/tab_live_china_normal"
+            android:gravity="center"
+            android:background="@drawable/shouye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_marginTop="50dp"
+        android:layout_above="@id/ll"
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>
