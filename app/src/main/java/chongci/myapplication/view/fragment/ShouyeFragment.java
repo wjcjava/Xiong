@@ -87,6 +87,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     private MyAdperdemo2 adperdemo2;
 
 
+
     public ShouyeFragment() {
         // Required empty public constructor
     }
