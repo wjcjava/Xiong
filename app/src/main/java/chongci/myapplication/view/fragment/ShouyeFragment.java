@@ -88,6 +88,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
 
 
+
     public ShouyeFragment() {
         // Required empty public constructor
     }
