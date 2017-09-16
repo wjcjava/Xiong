@@ -23,6 +23,7 @@ public class MyAdperdemo2 extends BaseAdapter {
     public MyAdperdemo2(Context context, List<BeanTwo.ListBean> list4) {
         this.context = context;
         this.list1 = list4;
+
     }
 
     @Override
