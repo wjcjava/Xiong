@@ -124,7 +124,6 @@ public class HudongActivity extends AppCompatActivity implements IView {
 
                         adperdemo4.notifyDataSetChanged();
                         test_list_view_frame.refreshComplete();
-
                     }
 
                 });
