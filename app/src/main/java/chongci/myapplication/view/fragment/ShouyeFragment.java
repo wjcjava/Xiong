@@ -82,6 +82,9 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     private ProgressBar pregress;
     private PtrClassicFrameLayout test_list_view_frame;
     private android.os.Handler handler=new android.os.Handler();
+    private MyAdperdemo adperdemo;
+    private MyAdperdemo3 adperdemo3;
+    private MyAdperdemo2 adperdemo2;
 
 
     public ShouyeFragment() {
@@ -119,7 +122,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
         tupian = (ImageView) view1.findViewById(R.id.tupian);
         button.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
-        initData();
+
 
         listview = (MyListview) view1.findViewById(R.id.listview);
         grid2 = (MyGridview) view1.findViewById(R.id.grid2);
@@ -138,12 +141,13 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
         view3.setVisibility(View.INVISIBLE);
         view4.setVisibility(View.INVISIBLE);
 
-
+        initData();
         tv_hudong = (TextView) view1.findViewById(R.id.tv_hudong);
         tv_hudong.setOnClickListener(this);
 
 
         test_list_view_frame = (PtrClassicFrameLayout) view1.findViewById(R.id.test_list_view_frame);
+
         test_list_view_frame.postDelayed(new Runnable() {
 
             @Override
@@ -171,8 +175,10 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
                     @Override
 
                     public void run() {
-
-                       initData();
+                        adperdemo.notifyDataSetChanged();
+                        adperdemo3.notifyDataSetChanged();
+                        adperdemo2.notifyDataSetChanged();
+                        test_list_view_frame.refreshComplete();
 
                     }
 
@@ -183,6 +189,13 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
 
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
     }
 
     private void initData() {
@@ -196,7 +209,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
     @Override
     public void OnSuccess(Bean bean) {
-        test_list_view_frame.refreshComplete();
+
         myDialog.dismiss();
         button.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -230,10 +243,10 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
         list5.addAll(bean.getData().getChinalive().getList());
 
-        final MyAdperdemo adperdemo = new MyAdperdemo(getActivity(), list2);
+        adperdemo = new MyAdperdemo(getActivity(), list2);
         grid.setAdapter(adperdemo);
 
-        final MyAdperdemo3 adperdemo3 = new MyAdperdemo3(getActivity(), list5);
+        adperdemo3 = new MyAdperdemo3(getActivity(), list5);
         grid2.setAdapter(adperdemo3);
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -280,7 +293,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     @Override
     public void OnSuccecc(BeanTwo beanTwo) {
         list4.addAll(beanTwo.getList());
-        final MyAdperdemo2 adperdemo2 = new MyAdperdemo2(getActivity(), list4);
+        adperdemo2 = new MyAdperdemo2(getActivity(), list4);
         listview.setAdapter(adperdemo2);
         getActivity().runOnUiThread(new Runnable() {
             @Override

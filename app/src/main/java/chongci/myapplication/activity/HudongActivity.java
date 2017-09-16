@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class HudongActivity extends AppCompatActivity implements IView {
     private ImageView back;
     private PtrClassicFrameLayout test_list_view_frame;
     private Handler handler=new Handler();
+    private MyAdperdemo4 adperdemo4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +63,9 @@ public class HudongActivity extends AppCompatActivity implements IView {
 
     @Override
     public void OnSuccecc(BeanThree beanThree) {
-        //test_list_view_frame.refreshComplete();
+
         list.addAll(beanThree.getInteractive());
-        final MyAdperdemo4 adperdemo4 = new MyAdperdemo4(HudongActivity.this, list);
+        adperdemo4 = new MyAdperdemo4(HudongActivity.this, list);
         listview1.setAdapter(adperdemo4);
         runOnUiThread(new Runnable() {
             @Override
@@ -91,44 +94,45 @@ public class HudongActivity extends AppCompatActivity implements IView {
                 finish();
             }
         });
-//        test_list_view_frame = (PtrClassicFrameLayout) findViewById(R.id.test_list_view_frame);
-//        test_list_view_frame.postDelayed(new Runnable() {
-//
-//            @Override
-//
-//            public void run() {
-//
-//                //是否自动加载 默认true mPtrFrame.setAutoLoadMoreEnable(true)
-//
-//                test_list_view_frame.autoRefresh(false);
-//
-//            }
-//
-//        }, 2000);
-//       test_list_view_frame.setPtrHandler(new PtrDefaultHandler() {
-//
-//
-//
-//            @Override//下拉刷新的时候走这里
-//
-//            public void onRefreshBegin(PtrFrameLayout frame) {
-//
-//                handler.post(new Runnable() {
-//
-//                    @Override
-//
-//                    public void run() {
-//
-//                      initDate();
-//
-//                    }
-//
-//                });
-//
-//            }
-//
-//
-//
-//        });
+        test_list_view_frame = (PtrClassicFrameLayout) findViewById(R.id.test_list_view_frame);
+        test_list_view_frame.postDelayed(new Runnable() {
+
+            @Override
+
+            public void run() {
+
+                //是否自动加载 默认true mPtrFrame.setAutoLoadMoreEnable(true)
+
+                test_list_view_frame.autoRefresh(false);
+
+            }
+
+        }, 2000);
+       test_list_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+
+
+            @Override//下拉刷新的时候走这里
+
+            public void onRefreshBegin(PtrFrameLayout frame) {
+
+                handler.post(new Runnable() {
+
+                    @Override
+
+                    public void run() {
+
+                        adperdemo4.notifyDataSetChanged();
+                        test_list_view_frame.refreshComplete();
+
+                    }
+
+                });
+
+            }
+
+
+
+        });
     }
 }
