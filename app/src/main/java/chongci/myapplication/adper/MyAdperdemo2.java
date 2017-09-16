@@ -24,6 +24,7 @@ public class MyAdperdemo2 extends BaseAdapter {
         this.context = context;
         this.list1 = list4;
 
+
     }
 
     @Override
