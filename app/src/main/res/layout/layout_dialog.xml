@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+       android:gravity="center"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <ImageView
+
+           android:layout_width="70dp"
+           android:layout_height="70dp"
+           android:src="@drawable/fcb"
+           />
+       <ImageView
+            android:id="@+id/qq"
+           android:layout_width="70dp"
+           android:layout_height="70dp"
+           android:src="@drawable/login_qq"
+           />
+       <ImageView
+
+           android:layout_width="70dp"
+           android:layout_height="70dp"
+           android:src="@drawable/sinawebo"
+           />
+   </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/wechat"
+            />
+        <ImageView
+
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/moments"
+            />
+        <ImageView
+
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+
+            />
+    </LinearLayout>
+    <Button
+         android:id="@+id/bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        />
+</LinearLayout>

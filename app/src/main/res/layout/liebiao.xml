@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-
+     <View
+         android:layout_below="@+id/name"
+         android:layout_width="match_parent"
+         android:layout_height="25dp"></View>
     <TextView
         android:text="najsnd"
         android:id="@+id/name"
@@ -20,11 +25,27 @@
         android:src="@mipmap/ic_launcher"
         android:id="@+id/tu"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp" />
+
+    <TextView
+        android:drawableLeft="@drawable/lpanda_live_layer"
+        android:text="Live"
+        android:textColor="#fff"
+        android:background="@drawable/default_time_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:id="@+id/textView3" />
+
 
 </RelativeLayout>

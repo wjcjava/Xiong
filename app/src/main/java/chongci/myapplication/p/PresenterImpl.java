@@ -16,8 +16,10 @@ public class PresenterImpl implements Ipersenter {
     private IView iView;
     private IModelImpl iModel;
 
+
     public PresenterImpl(IView iView) {
         this.iView = iView;
+
         iModel = new IModelImpl();
     }
 

@@ -8,15 +8,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
+import com.chanven.lib.cptr.PtrDefaultHandler;
+import com.chanven.lib.cptr.PtrFrameLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,7 @@ import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.R;
 import chongci.myapplication.activity.HudongActivity;
+import chongci.myapplication.activity.voidactivity.PanPanActivity;
 import chongci.myapplication.adper.MyAdperdemo;
 import chongci.myapplication.adper.MyAdperdemo1;
 import chongci.myapplication.adper.MyAdperdemo2;
@@ -48,7 +54,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     private List<BeanOne.ListBean> list3 = new ArrayList<>();
     private List<BeanTwo.ListBean> list4 = new ArrayList<>();
     private List<Bean.DataBean.ChinaliveBean.ListBeanX> list5 = new ArrayList<>();
-
+    private List<Bean.DataBean.PandaeyeBean.ItemsBean> list6 = new ArrayList<>();
 
     private Banner banner;
     private TextView baiyun;
@@ -73,6 +79,10 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     private View view4;
     private PtrClassicFrameLayout ptr;
     private TextView tv_hudong;
+    private ProgressBar pregress;
+    private PtrClassicFrameLayout test_list_view_frame;
+    private android.os.Handler handler=new android.os.Handler();
+
 
     public ShouyeFragment() {
         // Required empty public constructor
@@ -92,7 +102,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
         myDialog.setCancelable(true);
         myDialog.show();
         initView(view1);
-
+        initdianji();
         return view1;
     }
 
@@ -131,6 +141,48 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
         tv_hudong = (TextView) view1.findViewById(R.id.tv_hudong);
         tv_hudong.setOnClickListener(this);
+
+
+        test_list_view_frame = (PtrClassicFrameLayout) view1.findViewById(R.id.test_list_view_frame);
+        test_list_view_frame.postDelayed(new Runnable() {
+
+            @Override
+
+            public void run() {
+
+                //是否自动加载 默认true mPtrFrame.setAutoLoadMoreEnable(true)
+
+                test_list_view_frame.autoRefresh(false);
+
+            }
+
+        }, 2000);
+
+        test_list_view_frame.setPtrHandler(new PtrDefaultHandler() {
+
+
+
+            @Override//下拉刷新的时候走这里
+
+            public void onRefreshBegin(PtrFrameLayout frame) {
+
+                handler.post(new Runnable() {
+
+                    @Override
+
+                    public void run() {
+
+                       initData();
+
+                    }
+
+                });
+
+            }
+
+
+
+        });
     }
 
     private void initData() {
@@ -144,6 +196,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
     @Override
     public void OnSuccess(Bean bean) {
+        test_list_view_frame.refreshComplete();
         myDialog.dismiss();
         button.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -166,6 +219,10 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
         xunshui.setText(bean.getData().getPandaeye().getItems().get(1).getTitle());
         baiyun.setText(bean.getData().getPandaeye().getItems().get(0).getTitle());
 
+        list6.addAll(bean.getData().getPandaeye().getItems());
+
+        xunshui.setOnClickListener(this);
+        baiyun.setOnClickListener(this);
 
         Glide.with(getActivity()).load(bean.getData().getPandaeye().getPandaeyelogo()).into(tupian);
         list1.addAll(bean.getData().getBigImg());
@@ -242,10 +299,49 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.tv_hudong:
-        getActivity().startActivity(new Intent(getActivity(), HudongActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), HudongActivity.class));
                 break;
+            case R.id.baiyun:
+                Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("shipin", list6.get(0).getPid());
+                startActivity(intent);
+                break;
+            case R.id.xunshui:
+                Intent intent2 = new Intent(getActivity(), PanPanActivity.class);
+                intent2.putExtra("shipin", list6.get(1).getPid());
+                startActivity(intent2);
+                break;
+
         }
+    }
+
+    private void initdianji() {
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("shipin", list1.get(position).getPid());
+                startActivity(intent);
+            }
+        });
+        grid1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("shipin", list3.get(i).getPid());
+                startActivity(intent);
+            }
+        });
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("shipin", list4.get(i).getPid());
+                startActivity(intent);
+            }
+        });
+
     }
 }

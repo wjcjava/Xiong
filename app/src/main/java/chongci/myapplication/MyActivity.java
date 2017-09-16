@@ -15,7 +15,6 @@ import chongci.myapplication.view.fragment.ZhongGuoFragment;
 
 
 public class MyActivity extends AppCompatActivity implements View.OnClickListener {
-
     private ShouyeFragment shouyeFragment;
     private GuanchaFragment guanchaFragment;
     private WenhuaFragment wenhuaFragment;
@@ -26,7 +25,6 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private RadioButton zhibo;
     private RadioButton zhongguo;
     private RadioButton shouye;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +33,6 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         initDate();
 
     }
-
     private void initDate() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -43,16 +40,12 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         transaction.add(R.id.fragment,shouyeFragment);
         transaction.commit();
     }
-
-
     private void initView() {
         shouye = (RadioButton) findViewById(R.id.shouye);
         guancha = (RadioButton) findViewById(R.id.guancha);
         wenhua = (RadioButton) findViewById(R.id.wenhua);
         zhibo = (RadioButton) findViewById(R.id.zhibo);
         zhongguo = (RadioButton) findViewById(R.id.zhongguo);
-
-
         shouye.setOnClickListener(this);
         guancha.setOnClickListener(this);
         wenhua.setOnClickListener(this);
@@ -109,7 +102,6 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         }
         transaction.commit();
     }
-
     private void hideAll(FragmentTransaction transaction) {
         if(shouyeFragment!=null){
             transaction.hide(shouyeFragment);

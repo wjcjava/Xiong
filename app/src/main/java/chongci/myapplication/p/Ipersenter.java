@@ -21,4 +21,6 @@ public interface Ipersenter {
 
     void BeanGet3(String url3);
     void BeanGet3(BeanThree beanThree);
+
+
 }
