@@ -84,6 +84,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     private android.os.Handler handler=new android.os.Handler();
     private MyAdperdemo adperdemo;
     private MyAdperdemo3 adperdemo3;
+
     private MyAdperdemo2 adperdemo2;
 
 
