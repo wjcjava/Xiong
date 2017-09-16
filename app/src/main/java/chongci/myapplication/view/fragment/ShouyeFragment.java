@@ -175,9 +175,9 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
                     @Override
 
                     public void run() {
-                        adperdemo.notifyDataSetChanged();
-                        adperdemo3.notifyDataSetChanged();
-                        adperdemo2.notifyDataSetChanged();
+//                        adperdemo.notifyDataSetChanged();
+//                        adperdemo3.notifyDataSetChanged();
+//                        adperdemo2.notifyDataSetChanged();
                         test_list_view_frame.refreshComplete();
 
                     }
