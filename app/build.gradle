@@ -33,6 +33,7 @@ dependencies {
     compile 'com.android.support:support-v4:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
     compile 'com.chanven.lib:cptr:1.1.0'
+    compile 'in.srain.cube:ptr-load-more:1.0.6'
     compile project(':vitamio')
     compile files('libs/SocialSDK_QQ_Simplify.jar')
     compile files('libs/umeng_shareboard_widget.jar')
@@ -40,4 +41,7 @@ dependencies {
     compile files('libs/umeng_social_net.jar')
     compile files('libs/umeng_social_shareboard.jar')
     compile files('libs/umeng_social_tool.jar')
+    compile files('libs/SocialSDK_Sina_Simplify.jar')
+    compile files('libs/SocialSDK_WeChat_Simplify.jar')
+    compile files('libs/umeng_social_shareview.jar')
 }
