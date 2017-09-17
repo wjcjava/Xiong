@@ -65,22 +65,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.prosentactivity.GeRenActivity" />
+        <activity android:name=".activity.prosentactivity.DengLuActivity" />
+        <activity android:name=".activity.prosentactivity.SheActivity" />
+        <activity android:name=".activity.prosentactivity.LiShiActivity" />
+        <activity android:name=".activity.prosentactivity.ShouCangActivity"></activity>
+        <activity android:name=".activity.WebActivity" />
         <activity android:name=".activity.VideoActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".activity.WebActivity"></activity>
+            android:screenOrientation="landscape"
 
-        <activity
-            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            />
     </application>
 
 </manifest>

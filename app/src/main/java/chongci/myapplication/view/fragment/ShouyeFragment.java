@@ -4,6 +4,7 @@ package chongci.myapplication.view.fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.R;
 import chongci.myapplication.activity.HudongActivity;
+import chongci.myapplication.activity.prosentactivity.GeRenActivity;
 import chongci.myapplication.activity.voidactivity.PanPanActivity;
 import chongci.myapplication.adper.MyAdperdemo;
 import chongci.myapplication.adper.MyAdperdemo1;
@@ -81,13 +83,12 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
     private TextView tv_hudong;
     private ProgressBar pregress;
     private PtrClassicFrameLayout test_list_view_frame;
-    private android.os.Handler handler=new android.os.Handler();
+    private Handler handler = new Handler();
     private MyAdperdemo adperdemo;
     private MyAdperdemo3 adperdemo3;
 
     private MyAdperdemo2 adperdemo2;
-
-
+    private TextView tv_person;
 
 
     public ShouyeFragment() {
@@ -168,7 +169,6 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
         test_list_view_frame.setPtrHandler(new PtrDefaultHandler() {
 
 
-
             @Override//下拉刷新的时候走这里
 
             public void onRefreshBegin(PtrFrameLayout frame) {
@@ -190,8 +190,9 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
             }
 
 
-
         });
+        tv_person = (TextView) view1.findViewById(R.id.tv_person);
+        tv_person.setOnClickListener(this);
     }
 
     @Override
@@ -328,6 +329,9 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
                 Intent intent2 = new Intent(getActivity(), PanPanActivity.class);
                 intent2.putExtra("shipin", list6.get(1).getPid());
                 startActivity(intent2);
+                break;
+            case R.id.tv_person:
+                getActivity().startActivity(new Intent(getActivity(), GeRenActivity.class));
                 break;
 
         }

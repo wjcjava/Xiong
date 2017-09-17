@@ -9,7 +9,7 @@
     <TextView
         android:text="najsnd"
         android:id="@+id/name"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="#000"
@@ -18,7 +18,7 @@
         android:layout_alignStart="@+id/tu" />
 
     <ImageView
-        android:layout_marginTop="25dp"
+
         android:src="@mipmap/ic_launcher"
         android:id="@+id/tu"
         android:layout_width="150dp"
@@ -29,20 +29,13 @@
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_alignLeft="@+id/name"
-        android:layout_alignStart="@+id/name"
 
-        android:id="@+id/time" />
 
     <TextView
         android:background="@drawable/default_time_view"
         android:text="TextView"
         android:textColor="#fff"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/play"
         android:layout_width="wrap_content"
@@ -50,6 +43,16 @@
         android:layout_above="@+id/name"
         android:layout_alignLeft="@+id/name"
         android:layout_alignStart="@+id/name"
-
         android:id="@+id/shichang1" />
+
+    <TextView
+        android:id="@+id/time"
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_marginTop="12dp"
+         />
 </RelativeLayout>

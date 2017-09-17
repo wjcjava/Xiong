@@ -29,6 +29,7 @@
         </FrameLayout>
 
         <TextView
+
             android:id="@+id/tv_person"
             android:layout_width="30dp"
             android:layout_height="30dp"
