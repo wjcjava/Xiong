@@ -10,6 +10,10 @@ import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
 import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
+import chongci.myapplication.Bean.ChatBean;
+import chongci.myapplication.Bean.LiveBean;
+import chongci.myapplication.Bean.LiveEyesBean;
+import chongci.myapplication.Bean.LiveIndexBean;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -65,6 +69,22 @@ public class Fengzhuang {
     }
     public interface GetBeanjie1{
         void jiexi1(BeanThree bean);
+    }
+
+    public interface GetLiveBean{
+        void show(LiveBean bean);
+    }
+
+    public interface GetLiveIndexBean{
+        void show(LiveIndexBean bean);
+    }
+
+    public interface GetLiveEyesBean{
+        void show(LiveEyesBean bean);
+    }
+
+    public interface GetChatBean{
+        void show(ChatBean bean);
     }
     public void jiexi(String url, final GetBeantu getBeantu) {
 
@@ -202,6 +222,91 @@ public class Fengzhuang {
 
 
 
+    public void parthlive(String url, final GetLiveBean liveBean) {
+        final Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String bb = response.body().string();
+                Gson gson = new Gson();
+                final LiveBean bean = gson.fromJson(bb, LiveBean.class);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        liveBean.show(bean);
+                    }
+                });
+            }
+        });
+    }
+
+
+    public void parseIndexBean(String url, final GetLiveIndexBean indexbean) {
+        final Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String bb = response.body().string();
+                Gson gson = new Gson();
+                final LiveIndexBean bean = gson.fromJson(bb, LiveIndexBean.class);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        indexbean.show(bean);
+                    }
+                });
+            }
+        });
+    }
+
+    public void parseEyesBean(String url, final GetLiveEyesBean eyesBean) {
+        final Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String bb = response.body().string();
+                Gson gson = new Gson();
+                final LiveEyesBean bean = gson.fromJson(bb, LiveEyesBean.class);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        eyesBean.show(bean);
+                    }
+                });
+            }
+        });
+    }
+
+
+    public void parseChatBean(String url, final GetChatBean chatBean) {
+        final Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String bb = response.body().string();
+                Gson gson = new Gson();
+                final ChatBean bean = gson.fromJson(bb, ChatBean.class);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        chatBean.show(bean);
+                    }
+                });
+            }
+        });
+    }
 
 
 

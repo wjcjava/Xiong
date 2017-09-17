@@ -40,13 +40,20 @@
             android:name="UMENG_APPKEY"
             android:value="59bbcc1ea325110a0e0004ce" />
 
-        <activity android:name=".MyActivity" />
+        <activity android:name=".MyActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            />
         <activity android:name=".activity.HudongActivity" />
         <activity android:name=".activity.HtmlActivity" />
         <activity
             android:name=".activity.voidactivity.PanPanActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".activity.voidactivity.ZhiboActivity" />
+
+        <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.VideoActivity"
+            android:screenOrientation="landscape"
+            />
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"

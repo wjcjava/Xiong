@@ -94,7 +94,7 @@ public class HtmlActivity extends AppCompatActivity implements View.OnClickListe
 //设置自定义布局
         View view1 = View.inflate(HtmlActivity.this, R.layout.layout_dialog, null);
         w.setContentView(view1);
-        qq=view1.findViewById(R.id.qq);
+        qq= (ImageView) view1.findViewById(R.id.qq);
 
         qq.setOnClickListener(this);
         //设置对话框无边距

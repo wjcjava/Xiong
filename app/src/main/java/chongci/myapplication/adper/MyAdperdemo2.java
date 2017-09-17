@@ -48,10 +48,10 @@ public class MyAdperdemo2 extends BaseAdapter {
         if (convertView == null) {
             hordle = new ViewHordle();
             convertView = LayoutInflater.from(context).inflate(R.layout.liebiao2, null);
-            hordle.name2=convertView.findViewById(R.id.name2);
-            hordle.tu2=convertView.findViewById(R.id.tu2);
-            hordle.time2=convertView.findViewById(R.id.time2);
-            hordle.shichang=convertView.findViewById(R.id.shichang);
+            hordle.name2= (TextView) convertView.findViewById(R.id.name2);
+            hordle.tu2= (ImageView) convertView.findViewById(R.id.tu2);
+            hordle.time2= (TextView) convertView.findViewById(R.id.time2);
+            hordle.shichang= (TextView) convertView.findViewById(R.id.shichang);
             convertView.setTag(hordle);
 
         } else {

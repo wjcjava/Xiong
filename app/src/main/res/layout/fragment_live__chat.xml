@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  android:orientation="vertical"
+    tools:context="chongci.myapplication.view.fragment.livefragment.Live_ChatFragment">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="20px"
+    >
+        <Button
+            android:id="@+id/lpanda_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8px"
+            android:layout_marginTop="18px"
+            android:background="@color/colorPrimaryDark"
+            android:text="发送"
+            android:textColor="@color/white" />
+
+        <chongci.myapplication.widget.ClearEditText
+            android:id="@+id/lpanda_input"
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="14px"
+            android:layout_marginRight="15px"
+            android:background="@drawable/pe_shape_border_grays"
+            android:layout_marginTop="18px"
+            android:layout_toLeftOf="@+id/lpanda_btn"
+            android:gravity="center_vertical"
+            android:hint="添加评论。。。"
+            android:paddingLeft="3dp"
+            android:textColorHint="#c9c9c9"
+            android:inputType="textMultiLine"
+            android:textCursorDrawable="@null"
+            android:textSize="40px" />
+</RelativeLayout>
+
+
+        <chongci.myapplication.widget.MyXListView
+            android:id="@+id/lpanda_watcktalk_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lpanda_watchtalk"
+            android:layout_marginTop="1px"
+            android:divider="@color/cctv_grey"
+            android:dividerHeight="@dimen/hline_height"
+            android:fadingEdge="none"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:visibility="visible" >
+        </chongci.myapplication.widget.MyXListView>
+
+
+</LinearLayout>

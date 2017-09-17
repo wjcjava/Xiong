@@ -121,8 +121,8 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
         button2 = (Button) view1.findViewById(R.id.button2);
         button = (Button) view1.findViewById(R.id.button);
-        grid = view1.findViewById(R.id.grid);
-        grid1 = view1.findViewById(R.id.grid1);
+        grid = (GridView) view1.findViewById(R.id.grid);
+        grid1 = (GridView) view1.findViewById(R.id.grid1);
         tupian = (ImageView) view1.findViewById(R.id.tupian);
         button.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
