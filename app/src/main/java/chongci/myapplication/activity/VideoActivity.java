@@ -28,7 +28,6 @@ public class VideoActivity extends AppCompatActivity {
 
         ArrayList<ScreenBean.VideoBean.ChaptersBean> video = (ArrayList<ScreenBean.VideoBean.ChaptersBean>) getIntent().getSerializableExtra("video");
         int pos = getIntent().getIntExtra("pos", 1);
-
         //String url = video.get(pos).getUrl();
         video_bobao.setMediaController(new MediaController(VideoActivity.this));
         video_bobao.setVideoPath("http://cntv.vod.cdn.myqcloud.com/flash/mp4video61/TMS/2017/09/14/29261a6b576f488a9124a7ded9d241d3_h264418000nero_aac32.mp4");
