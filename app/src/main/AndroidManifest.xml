@@ -82,6 +82,7 @@
         android:screenOrientation="landscape"
 
         />
+        <activity android:name=".view.fragment.ChinaFragment.LiveSwichActivity"></activity>
     </application>
 
 </manifest>

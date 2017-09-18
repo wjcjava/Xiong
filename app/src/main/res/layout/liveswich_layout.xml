@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ScrollView
+    android:background="#e616387D"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:background="@drawable/live_china_delect_channel"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="11dp"
+            android:id="@+id/live_chinnal_select_channel_cancel"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_swich"
+            android:layout_alignBottom="@+id/but_finish"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="切换栏目"/>
+
+        <TextView
+            android:id="@+id/tv_long"
+            android:layout_marginLeft="90dp"
+            android:textSize="15dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignBottom="@+id/but_finish" />
+
+        <Button
+            android:id="@+id/but_finish"
+         android:layout_marginRight="5dp"
+            android:layout_width="64dp"
+            android:layout_height="26dp"
+            android:textSize="15dp"
+            android:layout_below="@+id/live_chinnal_select_channel_cancel"
+            android:layout_alignParentRight="true"
+             android:background="@drawable/but_edit"
+            android:text="编辑" />
+
+    </RelativeLayout>
+
+
+        <GridView
+            android:id="@+id/gv_onchange"
+            android:layout_below="@+id/r1"
+            android:numColumns="3"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_margin="5dp"></GridView>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/tv_clickswich"
+           android:layout_below="@+id/gv_onchange"
+            android:layout_marginLeft="5dp"
+
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击切换更多栏目"/>
+
+
+        <GridView
+            android:layout_below="@+id/tv_clickswich"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/gv_unchange"
+            android:numColumns="3"></GridView>
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>
+
+
+
+
+</LinearLayout>

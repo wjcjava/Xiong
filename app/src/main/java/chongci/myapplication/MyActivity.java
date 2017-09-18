@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 
+import chongci.myapplication.view.fragment.ChinaFragment.LiveChinaFragment;
 import chongci.myapplication.view.fragment.GuanchaFragment;
 import chongci.myapplication.view.fragment.ShouyeFragment;
 import chongci.myapplication.view.fragment.WenhuaFragment;
@@ -19,7 +20,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private GuanchaFragment guanchaFragment;
     private WenhuaFragment wenhuaFragment;
     private ZhiboFragment zhiboFragment;
-    private ZhongGuoFragment zhongGuoFragment;
+    private LiveChinaFragment zhongGuoFragment;
     private RadioButton guancha;
     private RadioButton wenhua;
     private RadioButton zhibo;
@@ -93,7 +94,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 break;
             case R.id.zhongguo:
                 if(zhongGuoFragment==null){
-                    zhongGuoFragment=new ZhongGuoFragment();
+                    zhongGuoFragment=new LiveChinaFragment();
                     transaction.add(R.id.fragment,zhongGuoFragment);
                 }else {
                     transaction.show(zhongGuoFragment);
