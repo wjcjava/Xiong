@@ -4,6 +4,8 @@ import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
 import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
+import chongci.myapplication.Bean.GunGunBean;
+import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import chongci.myapplication.p.PresenterImpl;
 
@@ -51,6 +53,26 @@ public class IModelImpl implements IModel {
             @Override
             public void jiexi1(BeanThree bean) {
                 presenter.BeanGet3(bean);
+            }
+        });
+    }
+
+    @Override
+    public void BeanWenHuan(String url, final PresenterImpl presenter) {
+        Fengzhuang.getFengzhuang().wenhuajiexi(url, new Fengzhuang.WenHuanBean() {
+            @Override
+            public void wenhuajiexi(WenhuaBean wenhaBean) {
+                presenter.BeanWenHua(wenhaBean);
+            }
+        });
+    }
+
+    @Override
+    public void BeanGunGun(String url, final PresenterImpl presenter) {
+        Fengzhuang.getFengzhuang().GunGunjiexi(url, new Fengzhuang.GunGunBeanl() {
+            @Override
+            public void gugunjiexi(GunGunBean gunBean) {
+                presenter.BeanGunGun(gunBean);
             }
         });
     }

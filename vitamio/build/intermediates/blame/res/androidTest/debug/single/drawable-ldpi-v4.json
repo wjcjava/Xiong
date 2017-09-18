@@ -1,18 +1,6 @@
 [
     {
-        "merged": "F:\\Training\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
-        "source": "F:\\Training\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "E:\\ShiXun\\XiongMaoPinDao\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
-        "source": "E:\\ShiXun\\XiongMaoPinDao\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "E:\\ShiXun\\XiongMaoPingDao\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
-        "source": "E:\\ShiXun\\XiongMaoPingDao\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
-        "source": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
+        "merged": "E:\\Androidexpert\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "E:\\Androidexpert\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
     }
 ]

@@ -11,4 +11,6 @@ public interface IModel {
     void BeanGet1(String url, PresenterImpl presenter);
     void BeanGet2(String url,PresenterImpl presenter);
     void BeanGet3(String url,PresenterImpl presenter);
+    void BeanWenHuan(String url,PresenterImpl presenter);
+    void BeanGunGun(String url,PresenterImpl presenter);
 }

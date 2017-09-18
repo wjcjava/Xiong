@@ -23,7 +23,7 @@ import chongci.myapplication.view.fragment.livefragment.base.BaseFragment;
  * Created by lenovo on 2017/9/14.
  */
 
-public class Live_WondFragment extends BaseFragment implements IView {
+public class Live_WondFragment extends BaseFragment {
 
 
     private XRecyclerView xrecycleview;
@@ -74,23 +74,5 @@ public class Live_WondFragment extends BaseFragment implements IView {
         return R.layout.fragment_live__wonder;
     }
 
-    @Override
-    public void OnSuccess(Bean bean) {
 
-    }
-
-    @Override
-    public void OnSuccess(BeanOne beanOne) {
-
-    }
-
-    @Override
-    public void OnSuccecc(BeanTwo beanTwo) {
-
-    }
-
-    @Override
-    public void OnSuccecc(BeanThree beanThree) {
-
-    }
 }

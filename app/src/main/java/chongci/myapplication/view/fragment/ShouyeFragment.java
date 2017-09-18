@@ -31,6 +31,8 @@ import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
 import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
+import chongci.myapplication.Bean.GunGunBean;
+import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.R;
 import chongci.myapplication.activity.HudongActivity;
 import chongci.myapplication.activity.prosentactivity.GeRenActivity;
@@ -310,6 +312,16 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
 
     @Override
     public void OnSuccecc(BeanThree beanThree) {
+
+    }
+
+    @Override
+    public void OnSuccess(WenhuaBean bean) {
+
+    }
+
+    @Override
+    public void OnSuccess(GunGunBean gunBean) {
 
     }
 

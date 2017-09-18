@@ -77,11 +77,11 @@
         <activity android:name=".activity.prosentactivity.SheActivity" />
         <activity android:name=".activity.prosentactivity.LiShiActivity" />
         <activity android:name=".activity.prosentactivity.ShouCangActivity"></activity>
-        <activity android:name=".activity.WebActivity" />
-        <activity android:name=".activity.VideoActivity"
-            android:screenOrientation="landscape"
+        <activity android:name=".activity.voidactivity.GunGunActivity"
 
-            />
+        android:screenOrientation="landscape"
+
+        />
     </application>
 
 </manifest>

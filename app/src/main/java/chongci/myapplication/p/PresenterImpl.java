@@ -4,6 +4,8 @@ import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
 import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
+import chongci.myapplication.Bean.GunGunBean;
+import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.model.IModelImpl;
 import chongci.myapplication.view.IView;
 
@@ -63,6 +65,26 @@ public class PresenterImpl implements Ipersenter {
     @Override
     public void BeanGet3(BeanThree beanThree) {
         iView.OnSuccecc(beanThree);
+    }
+
+    @Override
+    public void BeanWenHua(String url4) {
+        iModel.BeanWenHuan(url4,this);
+    }
+
+    @Override
+    public void BeanWenHua(WenhuaBean wenHuaBean) {
+        iView.OnSuccess(wenHuaBean);
+    }
+
+    @Override
+    public void BeanGunGun(String url5) {
+        iModel.BeanGunGun(url5,this);
+    }
+
+    @Override
+    public void BeanGunGun(GunGunBean gunBean) {
+        iView.OnSuccess(gunBean);
     }
 
 

@@ -20,6 +20,8 @@ import chongci.myapplication.Bean.Bean;
 import chongci.myapplication.Bean.BeanOne;
 import chongci.myapplication.Bean.BeanThree;
 import chongci.myapplication.Bean.BeanTwo;
+import chongci.myapplication.Bean.GunGunBean;
+import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.R;
 import chongci.myapplication.adper.MyAdperdemo4;
 import chongci.myapplication.p.PresenterImpl;
@@ -73,6 +75,16 @@ public class HudongActivity extends AppCompatActivity implements IView {
                 adperdemo4.notifyDataSetChanged();
             }
         });
+    }
+
+    @Override
+    public void OnSuccess(WenhuaBean bean) {
+
+    }
+
+    @Override
+    public void OnSuccess(GunGunBean gunBean) {
+
     }
 
     private void initView() {
