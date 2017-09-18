@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\Program Files\feiq\Recv Files\Xiong\vitamio\src\main\assets"/><source path="E:\Program Files\feiq\Recv Files\Xiong\vitamio\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="E:\Program Files\feiq\Recv Files\Xiong\vitamio\src\release\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="D:\Training\AndroidCode\Xiong\vitamio\src\main\assets"/><source path="D:\Training\AndroidCode\Xiong\vitamio\build\generated\assets\shaders\release"/></dataSet><dataSet config="release"><source path="D:\Training\AndroidCode\Xiong\vitamio\src\release\assets"/></dataSet></merger>
