@@ -15,6 +15,7 @@ import chongci.myapplication.Bean.GunGunBean;
 import chongci.myapplication.Bean.LiveBean;
 import chongci.myapplication.Bean.LiveEyesBean;
 import chongci.myapplication.Bean.LiveIndexBean;
+import chongci.myapplication.Bean.LiveVideoBean;
 import chongci.myapplication.Bean.WenhuaBean;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -99,7 +100,9 @@ public class Fengzhuang {
     public interface GunGunBeanl {
         void gugunjiexi(GunGunBean gunBean);
     }
-
+    public interface GetLiveVedioBean{
+        void show(LiveVideoBean bean);
+    }
     public void GunGunjiexi(String url, final GunGunBeanl gunBeanl) {
 
         final Request request = new Request.Builder().url(url).build();
@@ -412,6 +415,27 @@ public class Fengzhuang {
         });
     }
 
+
+    public void parseVedioBean(String url, final GetLiveVedioBean vedioBean) {
+        final Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String bb = response.body().string();
+                Gson gson = new Gson();
+                final LiveVideoBean bean = gson.fromJson(bb, LiveVideoBean.class);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        vedioBean.show(bean);
+                    }
+                });
+            }
+        });
+    }
 
     public void jiexi4(String url, final GetBeanjie1 beanjie1) {
 

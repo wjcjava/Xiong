@@ -37,6 +37,7 @@ public class Live_EyeFragment extends BaseFragment {
         gridAdapter = new MyGridAdapter(getActivity(),list);
         gridView.setAdapter(gridAdapter);
 
+
     }
 
     @Override

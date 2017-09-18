@@ -5,14 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="chongci.myapplication.view.fragment.livefragment.Live_LivesFragment">
-
+<!--
 <io.vov.vitamio.widget.VideoView
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:id="@+id/vitamio_viedoviews"
-    />
+    />-->
 
-    <!--
     <RelativeLayout
         android:id="@+id/lpanda_live_play_layout"
         android:layout_width="match_parent"
@@ -21,7 +20,7 @@
         <ImageView
             android:id="@+id/lpanda_live_img"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:scaleType="fitXY"
             android:src="@drawable/no_img" />
 
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             layout="@layout/live_playvedio"
             android:visibility="gone" />
-    </RelativeLayout>   -->
+    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

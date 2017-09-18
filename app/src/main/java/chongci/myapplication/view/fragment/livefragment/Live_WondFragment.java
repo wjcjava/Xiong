@@ -1,5 +1,6 @@
 package chongci.myapplication.view.fragment.livefragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -8,15 +9,11 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import chongci.myapplication.Bean.Bean;
-import chongci.myapplication.Bean.BeanOne;
-import chongci.myapplication.Bean.BeanThree;
-import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.Bean.LiveBean;
 import chongci.myapplication.R;
+import chongci.myapplication.activity.Live_VedioActivity;
 import chongci.myapplication.adper.MyLiveAdapter;
 import chongci.myapplication.fengzhuang.Fengzhuang;
-import chongci.myapplication.view.IView;
 import chongci.myapplication.view.fragment.livefragment.base.BaseFragment;
 
 /**
@@ -54,6 +51,15 @@ public class Live_WondFragment extends BaseFragment {
                 xrecycleview.loadMoreComplete();
             }
         });
+
+adapter.setItemOnClick(new MyLiveAdapter.Listener() {
+    @Override
+    public void click(View v, int position) {
+        Intent intent=new Intent(getActivity(),Live_VedioActivity.class);
+
+        startActivity(intent);
+    }
+ });
 
     }
 

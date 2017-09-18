@@ -37,7 +37,7 @@ public class Live_LivesFragment extends BaseFragment {
     private List<String> titlelist = new ArrayList<String>();
     private io.vov.vitamio.widget.VideoView video_view;
 
-
+/*
     public  void expandlistview(){
         String url="http://www.ipanda.com/kehuduan/PAGE14501769230331752/index.json";
         Fengzhuang.getFengzhuang().parseIndexBean(url, new Fengzhuang.GetLiveIndexBean() {
@@ -56,30 +56,50 @@ public class Live_LivesFragment extends BaseFragment {
         int width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
         expandableListView.setIndicatorBounds(width-400, width-370);
 
-    }
+    }*/
 
     public void initVedio(){
-      //  video_view.setVideoPath("http://video.jiecao.fm/11/23/xin/%E5%81%87%E4%BA%BA.mp4");
-        video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+  /*    //  video_view.setVideoPath("http://video.jiecao.fm/11/23/xin/%E5%81%87%E4%BA%BA.mp4");
+     //   video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 video_view.start();
             }
         });
-        video_view.setMediaController(new MediaController(getActivity()));
+        video_view.setMediaController(new MediaController(getActivity()));*/
 
     }
 
     @Override
     protected void initData() {
-       expandlistview();
+      // expandlistview();
         initVedio();
     }
 
     @Override
     protected void initView(View view) {
-        video_view = (io.vov.vitamio.widget.VideoView) view.findViewById(R.id.vitamio_viedoviews);
+
+      //  video_view = (io.vov.vitamio.widget.VideoView) view.findViewById(R.id.vitamio_viedoviews);
         expandableListView = (ExpandableListView) view.findViewById(R.id.el_listview);
+        String url="http://www.ipanda.com/kehuduan/PAGE14501769230331752/index.json";
+        Fengzhuang.getFengzhuang().parseIndexBean(url, new Fengzhuang.GetLiveIndexBean() {
+            @Override
+            public void show(LiveIndexBean bean) {
+                List<String> liststring = new ArrayList<String>();
+                String brief = bean.getLive().get(0).getBrief();
+                liststring.add(brief);
+                groupList.add("简介");
+                childList.add(liststring);
+                expandableAdapter.notifyDataSetChanged();
+            }
+        });
+        expandableAdapter = new MyExpandableAdapter(getActivity(),childList,groupList);
+        expandableListView.setAdapter(expandableAdapter);
+        int width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
+        expandableListView.setIndicatorBounds(width-400, width-370);
+
+
+
         tab = (TabLayout) view.findViewById(R.id.tab);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         initTitle();
