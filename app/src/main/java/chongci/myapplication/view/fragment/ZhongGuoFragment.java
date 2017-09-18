@@ -14,7 +14,6 @@ import chongci.myapplication.R;
  */
 public class ZhongGuoFragment extends Fragment {
 
-
     public ZhongGuoFragment() {
         // Required empty public constructor
     }

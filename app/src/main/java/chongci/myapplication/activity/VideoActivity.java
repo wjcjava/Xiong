@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import chongci.myapplication.Bean.ScreenBean;
 import chongci.myapplication.R;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 public class VideoActivity extends AppCompatActivity {
 
@@ -23,14 +24,12 @@ public class VideoActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        video_bobao = (VideoView) findViewById(R.id.video_bobao);
-        buffer_tv = (TextView) findViewById(R.id.buffer_tv);
+        JCVideoPlayer videoPlayer = (JCVideoPlayer) findViewById(R.id.video_jc);
 
+        ArrayList<ScreenBean> list = new ArrayList<>();
         ArrayList<ScreenBean.VideoBean.ChaptersBean> video = (ArrayList<ScreenBean.VideoBean.ChaptersBean>) getIntent().getSerializableExtra("video");
         int pos = getIntent().getIntExtra("pos", 1);
-        //String url = video.get(pos).getUrl();
-        video_bobao.setMediaController(new MediaController(VideoActivity.this));
-        video_bobao.setVideoPath("http://cntv.vod.cdn.myqcloud.com/flash/mp4video61/TMS/2017/09/14/29261a6b576f488a9124a7ded9d241d3_h264418000nero_aac32.mp4");
-        video_bobao.start();
+
+        videoPlayer.setUp("http://cntv.vod.cdn.myqcloud.com/flash/mp4video61/TMS/2017/09/14/29261a6b576f488a9124a7ded9d241d3_h264418000nero_aac32.mp4","熊猫频道");
     }
 }
