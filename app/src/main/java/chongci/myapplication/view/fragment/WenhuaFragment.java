@@ -38,14 +38,15 @@ import static chongci.myapplication.R.id.view1;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WenhuaFragment extends Fragment implements IView{
+public class WenhuaFragment extends Fragment implements IView {
 
     List<WenhuaBean.BigImgBean> listBeanList = new ArrayList<>();
-    List<WenhuaBean.ListBean> list1=new ArrayList<>();
+    List<WenhuaBean.ListBean> list1 = new ArrayList<>();
     private PresenterImpl presenter;
     private ImageView tupian;
     private ListView listview;
     private TextView text;
+
     public WenhuaFragment() {
         // Required empty public constructor
     }
@@ -55,12 +56,13 @@ public class WenhuaFragment extends Fragment implements IView{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view1=inflater.inflate(R.layout.fragment_wenhua, container, false);
+        View view1 = inflater.inflate(R.layout.fragment_wenhua, container, false);
         initView(view1);
         presenter = new PresenterImpl(this);
         presenter.BeanWenHua("http://www.ipanda.com/kehuduan/video/index.json");
         return view1;
     }
+
     private void initView(View view1) {
 
         tupian = (ImageView) view1.findViewById(R.id.tupian);
@@ -69,8 +71,8 @@ public class WenhuaFragment extends Fragment implements IView{
         tupian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), GunGunActivity.class);
-                intent.putExtra("void",listBeanList.get(0).getPid());
+                Intent intent = new Intent(getActivity(), GunGunActivity.class);
+                intent.putExtra("void", listBeanList.get(0).getPid());
                 getActivity().startActivity(intent);
             }
         });
@@ -82,6 +84,7 @@ public class WenhuaFragment extends Fragment implements IView{
         });
 
     }
+
     @Override
     public void OnSuccess(Bean bean) {
 
@@ -110,7 +113,7 @@ public class WenhuaFragment extends Fragment implements IView{
 
 
         list1.addAll(bean.getList());
-        final MyAdperdemo5 adperdemo=new MyAdperdemo5(getActivity(),list1);
+        final MyAdperdemo5 adperdemo = new MyAdperdemo5(getActivity(), list1);
         listview.setAdapter(adperdemo);
         getActivity().runOnUiThread(new Runnable() {
             @Override

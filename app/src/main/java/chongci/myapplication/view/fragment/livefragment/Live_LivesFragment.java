@@ -59,7 +59,7 @@ public class Live_LivesFragment extends BaseFragment {
     }
 
     public void initVedio(){
-        video_view.setVideoPath("http://video.jiecao.fm/11/23/xin/%E5%81%87%E4%BA%BA.mp4");
+      //  video_view.setVideoPath("http://video.jiecao.fm/11/23/xin/%E5%81%87%E4%BA%BA.mp4");
         video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
