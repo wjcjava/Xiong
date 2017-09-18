@@ -4,12 +4,14 @@ package chongci.myapplication.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ScrollingView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,7 @@ public class WenhuaFragment extends Fragment implements IView {
     private ImageView tupian;
     private ListView listview;
     private TextView text;
+    private ScrollView scrollView;
 
     public WenhuaFragment() {
         // Required empty public constructor
@@ -76,6 +79,7 @@ public class WenhuaFragment extends Fragment implements IView {
                 getActivity().startActivity(intent);
             }
         });
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
