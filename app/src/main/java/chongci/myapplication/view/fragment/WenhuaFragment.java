@@ -1,6 +1,7 @@
 package chongci.myapplication.view.fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +29,18 @@ import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.Bean.GunGunBean;
 import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.R;
+import chongci.myapplication.activity.gungun_activity.GunGun_things;
 import chongci.myapplication.activity.voidactivity.GunGunActivity;
 import chongci.myapplication.adper.MyAdperdemo;
 import chongci.myapplication.adper.MyAdperdemo5;
 import chongci.myapplication.p.PresenterImpl;
 import chongci.myapplication.view.IView;
+import chongci.myapplication.widget.MyListview;
 
+import static android.R.id.list;
+import static chongci.myapplication.R.id.img_iv;
 import static chongci.myapplication.R.id.listview;
+import static chongci.myapplication.R.id.title_tv;
 import static chongci.myapplication.R.id.tupian;
 import static chongci.myapplication.R.id.view1;
 
@@ -49,6 +56,7 @@ public class WenhuaFragment extends Fragment implements IView {
     private ListView listview;
     private TextView text;
     private ScrollView scrollView;
+    private ProgressDialog myDialog;
 
     public WenhuaFragment() {
         // Required empty public constructor
@@ -60,6 +68,7 @@ public class WenhuaFragment extends Fragment implements IView {
                              Bundle savedInstanceState) {
 
         View view1 = inflater.inflate(R.layout.fragment_wenhua, container, false);
+        myDialog = new ProgressDialog(getActivity());
         initView(view1);
         presenter = new PresenterImpl(this);
         presenter.BeanWenHua("http://www.ipanda.com/kehuduan/video/index.json");
@@ -83,7 +92,9 @@ public class WenhuaFragment extends Fragment implements IView {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), "你点击了我", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), GunGun_things.class);
+                intent.putExtra("list", (Serializable) list1);
+                startActivity(intent);
             }
         });
 
@@ -92,11 +103,11 @@ public class WenhuaFragment extends Fragment implements IView {
     @Override
     public void OnSuccess(Bean bean) {
 
+
     }
 
     @Override
     public void OnSuccess(BeanOne beanOne) {
-
     }
 
     @Override
@@ -119,6 +130,7 @@ public class WenhuaFragment extends Fragment implements IView {
         list1.addAll(bean.getList());
         final MyAdperdemo5 adperdemo = new MyAdperdemo5(getActivity(), list1);
         listview.setAdapter(adperdemo);
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

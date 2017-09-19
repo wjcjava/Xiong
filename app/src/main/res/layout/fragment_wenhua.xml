@@ -1,37 +1,39 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scrollView"
     tools:context=".view.fragment.WenhuaFragment">
+
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="1000dp"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/tupian"
-                android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
             <TextView
 
                 android:id="@+id/text"
-                android:textSize="20dp"
-                android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/tupian"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:text="affejgeojgiejrigjioegjerigjiojo" />
+                android:text="我一直承受这我这个年龄不该有的帅气与机智，但是我不累"
+                android:textColor="#fedf"
+                android:textSize="20dp" />
 
         </RelativeLayout>
+
         <chongci.myapplication.widget.MyListview
 
             android:id="@+id/listview"

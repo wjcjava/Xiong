@@ -1,5 +1,6 @@
 package chongci.myapplication.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class WenhuaBean {
         this.list = list;
     }
 
-    public static class BigImgBean {
+    public static class BigImgBean{
         /**
          * url : http://live.ipanda.com/2017/09/15/VIDEAc5feUSci2yC8fu77kZ8170915.shtml
          * image : http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/9/16/1505549948920_493.jpg
@@ -124,7 +125,7 @@ public class WenhuaBean {
         }
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable{
         /**
          * url : http://live.ipanda.com/2017/09/04/VIDE0iASvHHOqMzcro3w31s1170904.shtml
          * image : http://p1.img.cctvpic.com/photoworkspace/2017/09/04/2017090417463096500.jpg
