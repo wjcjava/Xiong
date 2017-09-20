@@ -4,8 +4,13 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import chongci.myapplication.view.fragment.ChinaFragment.LiveChinaFragment;
 import chongci.myapplication.view.fragment.GuanchaFragment;
@@ -26,6 +31,19 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private RadioButton zhibo;
     private RadioButton zhongguo;
     private RadioButton shouye;
+    private static Boolean isExit = false;
+    private static Boolean hasTask = false;
+    Timer tExit = new Timer();
+    TimerTask task = new TimerTask(){
+
+        @Override
+        public void run() {
+            isExit = true;
+            hasTask = true;
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,4 +138,24 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             transaction.hide(zhongGuoFragment);
         }
     }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            if(isExit == false){
+                Toast.makeText(MyActivity.this, "再按一次返回键回到桌面", Toast.LENGTH_SHORT).show();
+                if(!hasTask){
+                    tExit.schedule(task, 2000);
+                }
+            }else{
+                finish();
+                System.exit(0);
+            }
+        }
+        return false;
+    }
+
+
 }
+

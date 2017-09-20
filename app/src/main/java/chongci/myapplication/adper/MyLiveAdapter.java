@@ -67,7 +67,7 @@ public class MyLiveAdapter extends RecyclerView.Adapter<MyLiveAdapter.ViewHolder
         }
     }
 
-    interface Listener {
+    public interface Listener {
         void click(View v, int position);
     }
 

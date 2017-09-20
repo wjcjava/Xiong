@@ -1,9 +1,17 @@
 package chongci.myapplication.view.fragment.livefragment;
 
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +45,25 @@ public class Live_EyeFragment extends BaseFragment {
         gridAdapter = new MyGridAdapter(getActivity(),list);
         gridView.setAdapter(gridAdapter);
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String liveid = list.get(position).getId();
+                String livetitle = list.get(position).getTitle();
+                Log.i("99999999",liveid);
+                Log.i("99999999",livetitle);
+                //发送广播
+                Intent intent = new Intent();
+                intent.putExtra("liveid", liveid);
+                intent.putExtra("livetitle",livetitle);
+                intent.setAction("com.example.socketserverdemo.SocketService");
+                getActivity().sendBroadcast(intent);
+
+            }
+        });
+
     }
+
 
     @Override
     protected void initView(View view) {

@@ -18,8 +18,6 @@ public class App extends Application{
         UMShareAPI.get(this);
     }
     {
-
-
         {
 
             PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");

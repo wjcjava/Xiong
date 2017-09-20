@@ -13,4 +13,6 @@ public interface BaoInter {
     void getBoBaoBea(String url, BoImpl boImplP);
 
     void getScreenbea(String url, BoImpl boImplP);
+
+    void getWebBea(String url, BoImpl boImplP);
 }

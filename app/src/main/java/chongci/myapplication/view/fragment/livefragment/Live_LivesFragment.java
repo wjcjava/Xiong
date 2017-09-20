@@ -1,142 +1,156 @@
 package chongci.myapplication.view.fragment.livefragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
-import android.widget.ExpandableListView;
-
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
 import chongci.myapplication.Bean.LiveIndexBean;
+import chongci.myapplication.Bean.LiveVideoBean;
 import chongci.myapplication.R;
-import chongci.myapplication.adper.MyExpandableAdapter;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import chongci.myapplication.view.fragment.livefragment.base.BaseFragment;
-import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.widget.MediaController;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
+import static chongci.myapplication.R.id.tv_vediotitle;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Live_LivesFragment extends BaseFragment {
+public class Live_LivesFragment extends BaseFragment implements View.OnClickListener {
 
-    private ExpandableListView expandableListView;
-    List<List<String>> childList = new ArrayList<List<String>>();
-    List<String> groupList = new ArrayList<String>();
-    private MyExpandableAdapter expandableAdapter;
     private TabLayout tab;
     private ViewPager viewPager;
     private List<Fragment> fraglist = new ArrayList<Fragment>();
     private List<String> titlelist = new ArrayList<String>();
     private io.vov.vitamio.widget.VideoView video_view;
+    private TextView contenttitle;
+    private ImageView clicktile;
+    private Button bt_liveeye;
+    private Button bt_livechat;
+    private TextView tv_vediotitle;
+    private FrameLayout fram;
+    private Live_EyeFragment live_eyeFragment;
+    private Live_ChatFragment live_chatFragment;
+    private FragmentManager manager;
+    private FragmentTransaction transaction,transactionn;
+    int a = 0;
+    private JCVideoPlayer jcvplayer;
+    private MyReceiver receiver;
+    private String liveid;
+    private String livetitle;
+    private String hls1;
+    private String parseurl;
 
 
-    public  void expandlistview(){
+    @Override
+    protected void initData() {
         String url="http://www.ipanda.com/kehuduan/PAGE14501769230331752/index.json";
         Fengzhuang.getFengzhuang().parseIndexBean(url, new Fengzhuang.GetLiveIndexBean() {
             @Override
             public void show(LiveIndexBean bean) {
-                List<String> liststring = new ArrayList<String>();
                 String brief = bean.getLive().get(0).getBrief();
-                liststring.add(brief);
-                groupList.add("简介");
-                childList.add(liststring);
-                expandableAdapter.notifyDataSetChanged();
+                contenttitle.setText(brief);
             }
         });
-        expandableAdapter = new MyExpandableAdapter(getActivity(),childList,groupList);
-        expandableListView.setAdapter(expandableAdapter);
-        int width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
-        expandableListView.setIndicatorBounds(width-400, width-370);
+        //注册广播
+        receiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("com.example.socketserverdemo.SocketService");
+        getActivity().registerReceiver(receiver, intentFilter);
 
-    }
 
-    public void initVedio(){
-      //  video_view.setVideoPath("http://video.jiecao.fm/11/23/xin/%E5%81%87%E4%BA%BA.mp4");
-        video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                video_view.start();
-            }
-        });
-        video_view.setMediaController(new MediaController(getActivity()));
-
-    }
-
+        clicktile.setOnClickListener(new View.OnClickListener() {
     @Override
-    protected void initData() {
-       expandlistview();
-        initVedio();
+    public void onClick(View v) {
+        switch (a) {
+            case 0:
+                a = 1;
+                contenttitle.setVisibility(View.VISIBLE);
+                clicktile.setImageResource(R.drawable.lpanda_off);
+                break;
+            case 1:
+                a = 0;
+                clicktile.setImageResource(R.drawable.lpanda_show);
+                contenttitle.setVisibility(View.GONE);
+                break;
+        }
+
+    }
+});
     }
 
-    @Override
+
+        @Override
     protected void initView(View view) {
-        video_view = (io.vov.vitamio.widget.VideoView) view.findViewById(R.id.vitamio_viedoviews);
-        expandableListView = (ExpandableListView) view.findViewById(R.id.el_listview);
-        tab = (TabLayout) view.findViewById(R.id.tab);
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        initTitle();
-        tab.addTab(tab.newTab().setText(titlelist.get(0)));
-        tab.addTab(tab.newTab().setText(titlelist.get(1)));
-        initFranment();
-        MyAdapter adapter = new MyAdapter(getActivity().getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
-        tab.setupWithViewPager(viewPager);
+        jcvplayer = (JCVideoPlayer) view.findViewById(R.id.jcvplayer);
+        contenttitle = (TextView) view.findViewById(R.id.tv_contenttitle);
+            tv_vediotitle = (TextView) view.findViewById(R.id.tv_vediotitle);
+        clicktile = (ImageView) view.findViewById(R.id.iv_clicktitle);
+        bt_liveeye = (Button) view.findViewById(R.id.bt_liveeye);
+        bt_livechat = (Button) view.findViewById(R.id.bt_livechat);
+        fram = (FrameLayout) view.findViewById(R.id.fram);
+        // 進入系統默認為movie
+        manager = getActivity().getSupportFragmentManager();
+        transactionn = manager.beginTransaction();
+        live_eyeFragment = new Live_EyeFragment();
+        transactionn.add(R.id.fram,live_eyeFragment);
+        transactionn.commit();
 
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_MOVE:
-                        viewPager.requestDisallowInterceptTouchEvent(true);
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        viewPager.requestDisallowInterceptTouchEvent(false);
-                    default:
-                        break;
+            bt_liveeye.setOnClickListener(this);
+        bt_livechat.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        manager = getActivity().getSupportFragmentManager();
+        transaction = manager.beginTransaction();
+        hideAll(transaction);
+        switch (v.getId()) {
+            case R.id.bt_liveeye:
+                if(live_eyeFragment==null){
+
+                    transaction.add(R.id.fram, live_eyeFragment);
+                }else{
+                    transaction.show(live_eyeFragment);
                 }
-                return true;
-            }
-        });
-    }
-    private void initTitle() {
-        titlelist.add("多视角直播");
-        titlelist.add("边看边聊");
-    }
 
-    private void initFranment() {
-        fraglist.add(new Live_EyeFragment());
-        fraglist.add(new Live_ChatFragment());
-    }
-
-    public class MyAdapter extends FragmentPagerAdapter {
-
-        public MyAdapter(FragmentManager fm) {
-            super(fm);
+                break;
+            case R.id.bt_livechat:
+                if(live_chatFragment==null){
+                    live_chatFragment = new Live_ChatFragment();
+                    transaction.add(R.id.fram, live_chatFragment);
+                }else{
+                    transaction.show(live_chatFragment);
+                }
+                break;
         }
+        // transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
-        @Override
-        public Fragment getItem(int position) {
-
-            return fraglist.get(position);
+    private void hideAll(FragmentTransaction transaction) {
+        if(live_eyeFragment!=null){
+            transaction.hide(live_eyeFragment);
         }
-
-        @Override
-        public int getCount() {
-
-            return fraglist.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titlelist.get(position);
+        if(live_chatFragment!=null){
+            transaction.hide(live_chatFragment);
         }
     }
 
@@ -144,4 +158,31 @@ public class Live_LivesFragment extends BaseFragment {
     public int getFragmentLayoutId() {
         return R.layout.fragment_live__live;
     }
+    private class MyReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Bundle bundle = intent.getExtras();
+            liveid = bundle.getString("liveid");
+            livetitle = bundle.getString("livetitle");
+            tv_vediotitle.setText("[正在直播]："+ livetitle);
+            parseurl = "http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hd"+liveid+"&amp;client=androidapp'";
+            Fengzhuang.getFengzhuang().parseVedioBean(parseurl, new Fengzhuang.GetLiveVedioBean() {
+                @Override
+                public void show(LiveVideoBean bean) {
+                    hls1 = bean.getHls_url().getHls1();
+                    jcvplayer.setUp(hls1,livetitle);
+                }
+            });
+
+
+        }
+    }
+
 }
+
+
+
+
+
+
+
