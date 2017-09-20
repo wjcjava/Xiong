@@ -258,6 +258,7 @@
         android:background="@drawable/login_butt"
         android:text="登录"
         android:textColor="#ffffff"
+
         />
 
 </com.zhy.android.percent.support.PercentLinearLayout>
