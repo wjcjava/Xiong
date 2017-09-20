@@ -32,7 +32,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/login"
+        android:id="@+id/denglu"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/baise"
@@ -61,7 +61,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/hostory"
+        android:id="@+id/lishi"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/baise"
@@ -143,7 +143,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/set"
+        android:id="@+id/shezhi"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/baise"

@@ -1,5 +1,9 @@
 [
     {
+        "merged": "E:\\ShiXun\\XiongMaoPingDao\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
+        "source": "E:\\ShiXun\\XiongMaoPingDao\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
+    },
+    {
         "merged": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_launcher.png",
         "source": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_launcher.png"
     }

@@ -1,65 +1,64 @@
 package chongci.myapplication.activity.prosentactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import chongci.myapplication.R;
 
 
-public class GeRenActivity extends AppCompatActivity {
-    @BindView(R.id.back)
-    ImageView back;
-    @BindView(R.id.login_image)
-    ImageView loginImage;
-    @BindView(R.id.login_text)
-    TextView loginText;
-    @BindView(R.id.login)
-    LinearLayout login;
-    @BindView(R.id.imageView)
-    ImageView imageView;
-    @BindView(R.id.textt)
-    TextView textt;
-    @BindView(R.id.hostory)
-    RelativeLayout hostory;
-    @BindView(R.id.imageView1)
-    ImageView imageView1;
-    @BindView(R.id.textt1)
-    TextView textt1;
-    @BindView(R.id.shoucang)
-    RelativeLayout shoucang;
-    @BindView(R.id.imageView2)
-    ImageView imageView2;
-    @BindView(R.id.textt2)
-    TextView textt2;
-    @BindView(R.id.set)
-    RelativeLayout set;
+public class GeRenActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    private LinearLayout denglu;
+    private RelativeLayout lishi;
+    private RelativeLayout shoucang;
+    private RelativeLayout shezhi;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_she_zhi);
-        ButterKnife.bind(this);
+        initView();
+
     }
 
-    @OnClick({R.id.login_text, R.id.textt, R.id.textt1, R.id.textt2})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.login_text:
+
+    private void initView() {
+        denglu = (LinearLayout) findViewById(R.id.denglu);
+        lishi = (RelativeLayout) findViewById(R.id.lishi);
+        shoucang = (RelativeLayout) findViewById(R.id.shoucang);
+        shezhi = (RelativeLayout) findViewById(R.id.shezhi);
+        denglu.setOnClickListener(this);
+        lishi.setOnClickListener(this);
+        shoucang.setOnClickListener(this);
+        shezhi.setOnClickListener(this);
+        back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back:
+                finish();
                 break;
-            case R.id.textt:
+            case R.id.denglu:
+                startActivity(new Intent(GeRenActivity.this, DengLuActivity.class));
                 break;
-            case R.id.textt1:
+            case R.id.lishi:
+                startActivity(new Intent(GeRenActivity.this, LiShiActivity.class));
                 break;
-            case R.id.textt2:
+            case R.id.shoucang:
+                startActivity(new Intent(GeRenActivity.this, ShouCangActivity.class));
+                break;
+            case R.id.shezhi:
+                startActivity(new Intent(GeRenActivity.this, SheActivity.class));
                 break;
         }
     }

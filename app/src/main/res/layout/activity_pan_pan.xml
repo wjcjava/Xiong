@@ -8,9 +8,9 @@
     tools:context="chongci.myapplication.activity.voidactivity.PanPanActivity">
 
 
-    <VideoView
-        android:id="@+id/vido"
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+        android:id="@+id/video_jc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
