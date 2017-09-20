@@ -62,7 +62,6 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         initView();
-
         initData();
     }
 
