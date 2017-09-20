@@ -36,8 +36,7 @@ public class ShouCangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shou_cang);
         initView();
         initDate();
-        MyAdper myAdper=new MyAdper(getSupportFragmentManager());
-        pager.setAdapter(myAdper);
+
     }
 
     private void initDate() {
@@ -47,6 +46,8 @@ public class ShouCangActivity extends AppCompatActivity {
         list.add(j);
         list1.add("直播");
         list1.add("精彩看点");
+        MyAdper myAdper=new MyAdper(getSupportFragmentManager());
+        pager.setAdapter(myAdper);
         layout.addTab(layout.newTab().setText(list1.get(0)));
         layout.addTab(layout.newTab().setText(list1.get(1)));
         layout.setupWithViewPager(pager);
