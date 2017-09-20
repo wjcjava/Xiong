@@ -4,6 +4,7 @@ package chongci.myapplication.model;
 import chongci.myapplication.Bean.BoBaoBean;
 import chongci.myapplication.Bean.ImageBean;
 import chongci.myapplication.Bean.ScreenBean;
+import chongci.myapplication.Bean.WebBean;
 import chongci.myapplication.fengzhuang.OkHttpUtil;
 import chongci.myapplication.p.BoImpl;
 
@@ -38,6 +39,16 @@ public class BaoImpl implements BaoInter {
             @Override
             public void showtu(ScreenBean screenBean) {
                 boImplP.getScreenBean(screenBean);
+            }
+        });
+    }
+
+    @Override
+    public void getWebBea(String url, final BoImpl boImplP) {
+        OkHttpUtil.getUtil().SendGet3(url, new OkHttpUtil.GetBeantu3() {
+            @Override
+            public void showtu(WebBean webBean) {
+                boImplP.getWebBean(webBean);
             }
         });
     }
