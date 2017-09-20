@@ -39,7 +39,6 @@ import chongci.myapplication.activity.WebActivity;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import io.vov.vitamio.widget.VideoView;
 
-import static chongci.myapplication.R.id.set;
 
 public class GunGun_things extends AppCompatActivity implements View.OnClickListener {
     private ImageView iv_back_rollVideoFragment;
