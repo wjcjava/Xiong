@@ -107,7 +107,7 @@ public class GunGun_things extends AppCompatActivity implements View.OnClickList
                         if (count==0){
                             iv_rollVideoCollect.setImageResource(R.drawable.collect_yes);
                             count=1;
-                            Toast.makeText(GunGun_things.this,"已添加到收藏",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GunGun_things.this,"已添加请到[我的收藏]中查看",Toast.LENGTH_SHORT).show();
                         }else {
                             iv_rollVideoCollect.setImageResource(R.drawable.collect_no);
                             count=0;

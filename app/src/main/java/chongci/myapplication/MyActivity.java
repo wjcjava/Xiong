@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import chongci.myapplication.view.fragment.ChinaFragment.LiveChinaFragment;
 import chongci.myapplication.view.fragment.GuanchaFragment;
@@ -13,6 +15,8 @@ import chongci.myapplication.view.fragment.ShouyeFragment;
 import chongci.myapplication.view.fragment.WenhuaFragment;
 import chongci.myapplication.view.fragment.ZhiboFragment;
 import chongci.myapplication.view.fragment.ZhongGuoFragment;
+
+import static com.umeng.qq.handler.a.s;
 
 
 public class MyActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +30,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     private RadioButton zhibo;
     private RadioButton zhongguo;
     private RadioButton shouye;
+    private  long mExitTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         transaction.add(R.id.fragment,shouyeFragment);
         transaction.commit();
     }
+
     private void initView() {
         shouye = (RadioButton) findViewById(R.id.shouye);
         guancha = (RadioButton) findViewById(R.id.guancha);
@@ -118,6 +124,29 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         }
         if(zhongGuoFragment!=null){
             transaction.hide(zhongGuoFragment);
+        }
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0){
+            exit();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+
+
+        if ((System.currentTimeMillis()- mExitTime)>2000){
+            Toast.makeText(MyActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            mExitTime=System.currentTimeMillis();
+        }else {
+            finish();
+            System.exit(0);
         }
     }
 }
