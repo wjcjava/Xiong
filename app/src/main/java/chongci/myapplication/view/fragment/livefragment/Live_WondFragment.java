@@ -1,14 +1,9 @@
 package chongci.myapplication.view.fragment.livefragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.ArrayList;
@@ -22,7 +17,7 @@ import chongci.myapplication.adper.MyLiveAdapter;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import chongci.myapplication.view.fragment.livefragment.base.BaseFragment;
 
-import static chongci.myapplication.R.id.set;
+
 
 /**
  * Created by lenovo on 2017/9/14.

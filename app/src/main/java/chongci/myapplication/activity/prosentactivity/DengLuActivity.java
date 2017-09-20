@@ -2,12 +2,17 @@ package chongci.myapplication.activity.prosentactivity;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.umeng.socialize.UMAuthListener;
@@ -24,6 +29,12 @@ public class DengLuActivity extends AppCompatActivity implements View.OnClickLis
 
     private RadioButton qq;
     private ImageView back;
+    private TextView name;
+    private EditText num;
+    private EditText pass;
+    private Button dengl;
+    private String passString;
+    private String numString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,14 @@ public class DengLuActivity extends AppCompatActivity implements View.OnClickLis
         qq.setOnClickListener(this);
         back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(this);
+        name = (TextView) findViewById(R.id.name);
+
+        num = (EditText) findViewById(R.id.num);
+        num.setOnClickListener(this);
+        pass = (EditText) findViewById(R.id.pass);
+        pass.setOnClickListener(this);
+        dengl = (Button) findViewById(R.id.dengl);
+        dengl.setOnClickListener(this);
     }
 
     @Override
@@ -50,8 +69,39 @@ public class DengLuActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.QQ:
                 UMShareAPI.get(DengLuActivity.this).doOauthVerify(DengLuActivity.this, SHARE_MEDIA.QQ, umAuthListener);
                 break;
+            case R.id.num:
+                break;
+            case R.id.pass:
+                break;
+            case R.id.dengl:
+                submit();
+                SharedPreferences share = getSharedPreferences("setting", 0);
+
+
+                if (num != null && pass != null) {
+
+                    String phone = num.getText().toString().trim();
+                    String password = pass.getText().toString().trim();
+                    if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(password)) {
+
+
+                        SharedPreferences.Editor edit = share.edit();
+                        edit.putString("login", "yes");
+                        edit.commit();
+
+
+                        //finish();
+                    } else {
+                        Toast.makeText(this, "手机号和密码不能为空", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+
+                }
+              startActivity(new Intent(DengLuActivity.this,GeRenActivity.class));
+                break;
         }
     }
+
 
     private UMAuthListener umAuthListener = new UMAuthListener() {
         @Override
@@ -62,19 +112,27 @@ public class DengLuActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
             Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
-            Set<String> set = data.keySet();
-            for (String string : set
-                    ) {
-                Log.i("msg",
-                        "============================Map=========================");
-                Log.i("++++++++++++", string + "::::" + data.get(string));
-                String str = data.get(string);
-                // 设置头像
-                if (string.equals("profile_image_url")) {
-                    Toast.makeText(DengLuActivity.this, "" + str, Toast.LENGTH_SHORT).show();
+            Set<String> keySet = data.keySet();
+            num.setText(keySet.toString());
+            System.out.println("+++++++" + keySet.toString());
+            //得到头像
+            String iconurl;
+            //得到昵称
+            String screenname;
+            for (String string : keySet) {
+                Log.i("TAG", string);
+                if (string.equals("screen_name")) {
+                    //获取登录的名字
+                    screenname = data.get("screen_name");
+                    name.setText(screenname);
                 }
-
+                if (string.equals("promfile_image_url")) {
+                    //获取登录的图片
+                    iconurl = data.get("profile_image_url");
+                    name.setText(iconurl);
+                }
             }
+
 
         }
 
@@ -94,5 +152,29 @@ public class DengLuActivity extends AppCompatActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
 
+    }
+
+
+
+    private void submit() {
+        // validate
+        passString = pass.getText().toString().trim();
+        if (TextUtils.isEmpty(passString)) {
+            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // TODO validate success, do something
+        numString = num.getText().toString().trim();
+        if (TextUtils.isEmpty(numString)) {
+            Toast.makeText(this, "账号：请输入邮箱或手机号", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

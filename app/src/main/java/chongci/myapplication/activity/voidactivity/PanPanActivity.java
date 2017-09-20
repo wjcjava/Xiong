@@ -57,6 +57,7 @@ public class PanPanActivity extends AppCompatActivity implements VoidView {
                 mp4String = list.get(0).getUrl();
                 Toast.makeText(PanPanActivity.this, mp4String, Toast.LENGTH_SHORT).show();
                 video_jc.setUp(mp4String,ming);
+
             }
         });
 

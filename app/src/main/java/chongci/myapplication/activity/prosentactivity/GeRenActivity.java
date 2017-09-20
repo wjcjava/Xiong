@@ -1,13 +1,17 @@
 package chongci.myapplication.activity.prosentactivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import chongci.myapplication.MyActivity;
 import chongci.myapplication.R;
 
 
@@ -19,6 +23,8 @@ public class GeRenActivity extends AppCompatActivity implements View.OnClickList
     private RelativeLayout shoucang;
     private RelativeLayout shezhi;
     private ImageView back;
+    private ImageView tu;
+    private TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +46,20 @@ public class GeRenActivity extends AppCompatActivity implements View.OnClickList
         shezhi.setOnClickListener(this);
         back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(this);
+        tu = (ImageView) findViewById(R.id.tu);
+        tu.setOnClickListener(this);
+        text = (TextView) findViewById(R.id.text);
+        text.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
-                finish();
+              startActivity(new Intent(GeRenActivity.this, MyActivity.class));
                 break;
             case R.id.denglu:
+                onResume();
                 startActivity(new Intent(GeRenActivity.this, DengLuActivity.class));
                 break;
             case R.id.lishi:
@@ -62,4 +73,21 @@ public class GeRenActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences shar = this.getSharedPreferences("setting", 0);
+
+
+        String login = shar.getString("login", "");
+
+        if (!TextUtils.isEmpty(login)) {
+            tu.setImageResource(R.drawable.tab_panda_live_normal);
+            text.setText("小米");
+        }
+
+    }
+
+
 }

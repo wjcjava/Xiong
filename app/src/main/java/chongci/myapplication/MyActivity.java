@@ -1,9 +1,11 @@
 package chongci.myapplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioButton;
@@ -17,7 +19,6 @@ import chongci.myapplication.view.fragment.GuanchaFragment;
 import chongci.myapplication.view.fragment.ShouyeFragment;
 import chongci.myapplication.view.fragment.WenhuaFragment;
 import chongci.myapplication.view.fragment.ZhiboFragment;
-import chongci.myapplication.view.fragment.ZhongGuoFragment;
 
 
 public class MyActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,8 +51,25 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_my);
         initView();
         initDate();
+        initDenglu();
 
     }
+
+    private void initDenglu() {
+       SharedPreferences share = getSharedPreferences("setting", 0);
+
+
+        if (TextUtils.isEmpty(share.getString("login", ""))) {
+            Toast.makeText(this, "你未登录哦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        else {
+            Toast.makeText(this, "欢迎再次进入", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
     private void initDate() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -147,15 +165,25 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
                 Toast.makeText(MyActivity.this, "再按一次返回键回到桌面", Toast.LENGTH_SHORT).show();
                 if(!hasTask){
                     tExit.schedule(task, 2000);
+                    SharedPreferences shar = getSharedPreferences("setting", 0);
+                    shar.edit().clear().commit();
                 }
             }else{
                 finish();
                 System.exit(0);
+
+                finish();
             }
         }
         return false;
     }
 
+    @Override
+    protected void onDestroy() {
 
+        SharedPreferences shar = getSharedPreferences("setting", 0);
+        shar.edit().clear().commit();
+        super.onDestroy();
+    }
 }
 

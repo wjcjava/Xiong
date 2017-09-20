@@ -19,7 +19,6 @@ import chongci.myapplication.voidbean.JingCaiBean;
 import chongci.myapplication.voidbean.PanPanBean;
 
 public class ZhiboActivity extends AppCompatActivity implements VoidView, View.OnClickListener {
-
     private VideoView vido3;
     private LinearLayout activity_zhibo;
     private String url = "http://115.182.35.91/api/getVideoInfoForCBox.do?pid=";
@@ -28,7 +27,6 @@ public class ZhiboActivity extends AppCompatActivity implements VoidView, View.O
     private MypresenterImpl mypresenter;
     private String mp4String;
     private Button bt;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

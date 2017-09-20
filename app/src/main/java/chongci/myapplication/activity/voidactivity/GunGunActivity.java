@@ -20,9 +20,9 @@ import chongci.myapplication.view.IView;
 
 
 public class GunGunActivity extends AppCompatActivity implements IView {
-    private List<GunGunBean.VideoBean.ChaptersBean> list=new ArrayList<>();
+    private List<GunGunBean.VideoBean.ChaptersBean> list = new ArrayList<>();
     private VideoView video;
-    private String url="http://115.182.35.91/api/getVideoInfoForCBox.do?pid=";
+    private String url = "http://115.182.35.91/api/getVideoInfoForCBox.do?pid=";
     private String shipin;
     private String mp4String;
     private PresenterImpl presenter;
@@ -33,7 +33,7 @@ public class GunGunActivity extends AppCompatActivity implements IView {
         setContentView(R.layout.activity_gun);
         shipin = getIntent().getStringExtra("void");
         presenter = new PresenterImpl(this);
-        presenter.BeanGunGun(url+shipin);
+        presenter.BeanGunGun(url + shipin);
         initView();
 
     }
@@ -78,7 +78,7 @@ public class GunGunActivity extends AppCompatActivity implements IView {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mp4String=list.get(0).getUrl();
+                mp4String = list.get(0).getUrl();
                 video = (VideoView) findViewById(R.id.video);
                 video.setMediaController(new MediaController(GunGunActivity.this));
                 video.setVideoPath(mp4String);
@@ -87,9 +87,4 @@ public class GunGunActivity extends AppCompatActivity implements IView {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        video.stopPlayback();
-    }
 }
