@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="chongci.myapplication.activity.prosentactivity.qitaactivity.wentifragment.Main2Activity">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#1D539D">
+
+        <ImageView
+            android:id="@+id/about_back"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/personal_back_img"
+            app:layout_heightPercent="10%w"
+            app:layout_widthPercent="10%w" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:text="关于熊猫频道"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+
+        app:layout_heightPercent="30%w"
+        app:layout_widthPercent="35%w" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="熊猫频道V1.6.0"
+        app:layout_heightPercent="5%w"
+
+        app:layout_widthPercent="35%w" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="有一天，女神问我，你知道3-8等于几吗？？我很激动，女神终于和我说话了，还有事求我帮忙。我忙说等于-5。她转身就走了，之后再也没有和我说话，总感觉哪里不对，是不是我说错什么话了？
+给女友发短信：“如果我长的吓人你还喜欢我吗？”女友回复：“这要看长字怎么读了”
+某公司招聘员工，几百名大学生争相自报家门：“我北大”“我交大”“我浙大”突然有一女生喊道：“我胸大！”董事长一拍桌子说：“就是你了！”
+一对情侣嘿咻完以后，男的问：“你觉得如何？”女孩羞答答的说：“我只能用一个英国人和一个美国人来形容。”男的不解。女孩红着脸说：“理查德.泰森。”"
+        android:textSize="15dp"
+        app:layout_heightPercent="70%w"
+
+        app:layout_widthPercent="95%w"
+
+        />
+
+</com.zhy.android.percent.support.PercentLinearLayout>

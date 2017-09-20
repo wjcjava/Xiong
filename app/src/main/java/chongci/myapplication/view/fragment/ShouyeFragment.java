@@ -334,11 +334,13 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
                 break;
             case R.id.baiyun:
                 Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("mingzi",list6.get(0).getTitle());
                 intent.putExtra("shipin", list6.get(0).getPid());
                 startActivity(intent);
                 break;
             case R.id.xunshui:
                 Intent intent2 = new Intent(getActivity(), PanPanActivity.class);
+                intent2.putExtra("mingzi",list6.get(1).getTitle());
                 intent2.putExtra("shipin", list6.get(1).getPid());
                 startActivity(intent2);
                 break;
@@ -354,6 +356,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
             @Override
             public void OnBannerClick(int position) {
                 Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("mingzi",list1.get(0).getTitle());
                 intent.putExtra("shipin", list1.get(position).getPid());
                 startActivity(intent);
             }
@@ -362,6 +365,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("mingzi",list3.get(i).getTitle());
                 intent.putExtra("shipin", list3.get(i).getPid());
                 startActivity(intent);
             }
@@ -370,6 +374,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PanPanActivity.class);
+                intent.putExtra("mingzi",list6.get(i).getTitle());
                 intent.putExtra("shipin", list4.get(i).getPid());
                 startActivity(intent);
             }

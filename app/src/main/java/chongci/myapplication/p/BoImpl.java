@@ -4,6 +4,8 @@ package chongci.myapplication.p;
 import chongci.myapplication.Bean.BoBaoBean;
 import chongci.myapplication.Bean.ImageBean;
 import chongci.myapplication.Bean.ScreenBean;
+import chongci.myapplication.Bean.WebBean;
+import chongci.myapplication.activity.WebActivity;
 import chongci.myapplication.model.BaoImpl;
 import chongci.myapplication.view.BoBaoInter;
 import chongci.myapplication.view.fragment.ZhiboFragment;
@@ -17,6 +19,11 @@ public class BoImpl implements BoInter {
     private BaoImpl baoImplM;
     public BoImpl(ZhiboFragment boBaoInter) {
         this.boBaoInterV = boBaoInter;
+        baoImplM = new BaoImpl();
+    }
+
+    public BoImpl(WebActivity webActivity) {
+        this.boBaoInterV = webActivity;
         baoImplM = new BaoImpl();
     }
 
@@ -60,5 +67,15 @@ public class BoImpl implements BoInter {
     @Override
     public void getScreenBean(ScreenBean screenBean) {
         boBaoInterV.onSuccess(screenBean);
+    }
+
+    @Override
+    public void getWebBean(String url) {
+        baoImplM.getWebBea(url,this);
+    }
+
+    @Override
+    public void getWebBean(WebBean webBean) {
+        boBaoInterV.onSuccess(webBean);
     }
 }

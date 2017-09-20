@@ -1,8 +1,10 @@
 package chongci.myapplication.view.fragment.livefragment;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class Live_ChatFragment extends BaseFragment {
     private List<ChatBean.DataBean.ContentBean> list= new ArrayList<>();
     private MyChatAdapter adapter;
     int page;
+    private String comment;
 
     @Override
     protected void initData() {
@@ -43,6 +46,8 @@ public class Live_ChatFragment extends BaseFragment {
         });
         adapter = new MyChatAdapter(getActivity(),list);
         listView.setAdapter(adapter);
+
+
 
     }
 
@@ -68,7 +73,17 @@ public class Live_ChatFragment extends BaseFragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                comment = et_input.getText().toString().trim();
+                ChatBean.DataBean.ContentBean bean=new ChatBean.DataBean.ContentBean();
+                bean.setMessage(comment);
+                String author = list.get(0).getAuthor();
+                bean.setAuthor(author);
+                list.add(0,bean);
+                adapter.notifyDataSetChanged();
+                et_input.setText("");
+                InputMethodManager inputMethodManager =
+                        (InputMethodManager)getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(et_input.getWindowToken(), 0);
             }
         });
     }

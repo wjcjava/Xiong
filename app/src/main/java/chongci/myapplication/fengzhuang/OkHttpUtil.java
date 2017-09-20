@@ -9,6 +9,7 @@ import java.io.IOException;
 import chongci.myapplication.Bean.BoBaoBean;
 import chongci.myapplication.Bean.ImageBean;
 import chongci.myapplication.Bean.ScreenBean;
+import chongci.myapplication.Bean.WebBean;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -120,6 +121,33 @@ public class OkHttpUtil {
                     @Override
                     public void run() {
                         getBeantu2.showtu(screenBean);
+                    }
+                });
+
+            }
+        });
+    }
+
+    public interface GetBeantu3 {
+        void showtu(WebBean webBean);
+    }
+    public void SendGet3(String url, final GetBeantu3 getBeantu3) {
+        final Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String string = response.body().string();
+                Gson gson = new Gson();
+                final WebBean webBean = gson.fromJson(string, WebBean.class);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        getBeantu3.showtu(webBean);
                     }
                 });
 

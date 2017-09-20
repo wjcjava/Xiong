@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import chongci.myapplication.Bean.WebBean;
 import chongci.myapplication.R;
 import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -47,6 +48,7 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
     private ArrayList<BoBaoBean.ListBean> list = new ArrayList<>();
     private ArrayList<ImageBean.DataBean.BigImgBean> imgBeen = new ArrayList<>();
     private ArrayList<ScreenBean.VideoBean.ChaptersBean> scrBean = new ArrayList<>();
+    private ArrayList<WebBean> webBee = new ArrayList<>();
     private BoBaoAdapter adapter;
     private int a = 1;
     private int pos;
@@ -182,6 +184,11 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
     @Override
     public void onSuccess(ScreenBean screenBean) {
         scrBean.addAll(screenBean.getVideo().getChapters());
+    }
+
+    @Override
+    public void onSuccess(WebBean webBean) {
+        webBee.add(webBean);
     }
 
 }

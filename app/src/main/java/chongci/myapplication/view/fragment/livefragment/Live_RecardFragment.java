@@ -1,5 +1,6 @@
 package chongci.myapplication.view.fragment.livefragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 import chongci.myapplication.Bean.LiveBean;
 import chongci.myapplication.R;
+import chongci.myapplication.activity.Live_VedioActivity;
 import chongci.myapplication.adper.MyLiveAdapter;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import chongci.myapplication.view.fragment.livefragment.base.BaseFragment;
@@ -45,6 +47,13 @@ public class Live_RecardFragment extends BaseFragment {
                 page++;
                 initData();
                 xrecycleview.loadMoreComplete();
+            }
+        });
+        adapter.setItemOnClick(new MyLiveAdapter.Listener() {
+            @Override
+            public void click(View v, int position) {
+                Intent intent=new Intent(getActivity(),Live_VedioActivity.class);
+                startActivity(intent);
             }
         });
 

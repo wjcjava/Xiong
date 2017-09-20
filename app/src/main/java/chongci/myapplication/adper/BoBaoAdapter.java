@@ -51,6 +51,7 @@ public class BoBaoAdapter extends RecyclerView.Adapter {
         MyViewHolder holder1 = (MyViewHolder) holder;
         Glide.with(context).load(list.get(position).getPicurl()).into(holder1.bitmap_iv);
         holder1.title_tv.setText(list.get(position).getTitle());
+        holder1.time_tv.setText(list.get(position).getFocus_date()+"");
         holder1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

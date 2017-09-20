@@ -1,8 +1,6 @@
-package chongci.myapplication.activity.prosentactivity;
+package chongci.myapplication.activity.prosentactivity.qitaactivity;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,24 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chongci.myapplication.R;
-import chongci.myapplication.view.fragment.Zhibo;
-import chongci.myapplication.view.fragment.livefragment.Jiangcaikandian;
 
+public class FanKunActivity extends AppCompatActivity {
 
-
-public class ShouCangActivity extends AppCompatActivity {
-    List<Fragment> list = new ArrayList<>();
-    List<String> list1 = new ArrayList<>();
-    private Zhibo zhibo;
-    private Jiangcaikandian j;
-    private TabLayout layout;
-    private ImageView fanhui;
+    private ImageView back;
+    private TabLayout tablayout;
     private ViewPager pager;
+    private List<Fragment> list=new ArrayList<>();
+    private List<String> list1=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shou_cang);
+        setContentView(R.layout.activity_fan_kun);
         initView();
         initDate();
         MyAdper myAdper=new MyAdper(getSupportFragmentManager());
@@ -41,35 +34,25 @@ public class ShouCangActivity extends AppCompatActivity {
     }
 
     private void initDate() {
-        zhibo = new Zhibo();
-        j = new Jiangcaikandian();
-        list.add(zhibo);
-        list.add(j);
-        list1.add("直播");
-        list1.add("精彩看点");
-        layout.addTab(layout.newTab().setText(list1.get(0)));
-        layout.addTab(layout.newTab().setText(list1.get(1)));
-        layout.setupWithViewPager(pager);
+
+        list1.add("遇到的问题");
+        list1.add("常见的问题");
+        tablayout.addTab(tablayout.newTab().setText(list1.get(0)));
+        tablayout.addTab(tablayout.newTab().setText(list1.get(1)));
+        tablayout.setupWithViewPager(pager);
     }
 
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void initView() {
-        fanhui = (ImageView) findViewById(R.id.fanhui);
+        back = (ImageView) findViewById(R.id.back);
+        tablayout = (TabLayout) findViewById(R.id.tablayout);
         pager = (ViewPager) findViewById(R.id.pager);
-        layout = (TabLayout) findViewById(R.id.layout);
-        fanhui.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-
     }
-
 
     private class MyAdper extends FragmentPagerAdapter{
 

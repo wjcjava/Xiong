@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import io.vov.vitamio.Vitamio;
 
 /**
@@ -21,6 +23,7 @@ public abstract class BaseFragment extends Fragment {
         initView(view);
         initData();
         Vitamio.isInitialized(getActivity());
+
         return view;
     }
 

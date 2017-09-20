@@ -1,4 +1,4 @@
-package chongci.myapplication.view.fragment;
+package chongci.myapplication.view.fragment.livefragment;
 
 
 import android.os.Bundle;
@@ -12,9 +12,10 @@ import chongci.myapplication.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ZhongGuoFragment extends Fragment {
+public class Live_CeshiFragment extends Fragment {
 
-    public ZhongGuoFragment() {
+
+    public Live_CeshiFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +24,7 @@ public class ZhongGuoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_zhong_guo, container, false);
+        return inflater.inflate(R.layout.fragment_live__ceshi, container, false);
     }
 
 }
