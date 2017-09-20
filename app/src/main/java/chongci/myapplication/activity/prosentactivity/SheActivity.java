@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
 import chongci.myapplication.R;
-import chongci.myapplication.activity.prosentactivity.qitaactivity.FanKunActivity;
+import chongci.myapplication.activity.prosentactivity.qitaactivity.YongHuActivity;
 
 public class SheActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,6 +44,7 @@ public class SheActivity extends AppCompatActivity implements View.OnClickListen
         qingchuhuancun.setOnClickListener(this);
         ruanjian.setOnClickListener(this);
         haoping.setOnClickListener(this);
+        fankui.setOnClickListener(this);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class SheActivity extends AppCompatActivity implements View.OnClickListen
                 ;
                 break;
             case R.id.fankui:
-                startActivity(new Intent(SheActivity.this, FanKunActivity.class));
+                startActivity(new Intent(SheActivity.this, YongHuActivity.class));
                 break;
             case R.id.ruanjian:
                 Toast.makeText(this, "已经是最新版本了", Toast.LENGTH_SHORT).show();

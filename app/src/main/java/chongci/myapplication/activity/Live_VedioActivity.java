@@ -4,21 +4,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import chongci.myapplication.Bean.LiveVideoBean;
 import chongci.myapplication.R;
-import chongci.myapplication.fengzhuang.Fengzhuang;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-
-import static chongci.myapplication.R.id.jcvplayer;
 
 
 public class Live_VedioActivity extends AppCompatActivity {
-
-
     private JCVideoPlayer videocontroller1;
     private String hlsurl;
     private String title;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
