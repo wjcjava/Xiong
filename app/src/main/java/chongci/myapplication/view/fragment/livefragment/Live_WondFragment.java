@@ -1,8 +1,13 @@
 package chongci.myapplication.view.fragment.livefragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -10,26 +15,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chongci.myapplication.Bean.LiveBean;
+import chongci.myapplication.Bean.LiveVedioItemBean;
 import chongci.myapplication.R;
 import chongci.myapplication.activity.Live_VedioActivity;
 import chongci.myapplication.adper.MyLiveAdapter;
 import chongci.myapplication.fengzhuang.Fengzhuang;
 import chongci.myapplication.view.fragment.livefragment.base.BaseFragment;
 
+import static chongci.myapplication.R.id.set;
+
 /**
  * Created by lenovo on 2017/9/14.
  */
 
 public class Live_WondFragment extends BaseFragment {
-
-
     private XRecyclerView xrecycleview;
     private List<LiveBean.VideoBean> list = new ArrayList<>();
     private MyLiveAdapter adapter;
 
     int page;
-
-
+    private String hls_url;
+    private String title;
+    private String urls;
 
     @Override
     protected void initView(View view) {
@@ -52,14 +59,6 @@ public class Live_WondFragment extends BaseFragment {
             }
         });
 
-adapter.setItemOnClick(new MyLiveAdapter.Listener() {
-    @Override
-    public void click(View v, int position) {
-        Intent intent=new Intent(getActivity(),Live_VedioActivity.class);
-
-        startActivity(intent);
-    }
- });
 
     }
 
@@ -73,12 +72,42 @@ adapter.setItemOnClick(new MyLiveAdapter.Listener() {
                 adapter.notifyDataSetChanged();
             }
         });
+        initIntent();
+    }
+
+    public  void  initIntent(){
+        adapter.setItemOnClick(new MyLiveAdapter.Listener() {
+            @Override
+            public void click(View v, int position) {
+
+                String vid = list.get(position).getVid();
+                Log.i("11111111111",vid);
+
+                urls = "http://115.182.35.91/api/getVideoInfoForCBox.do?pid="+vid;
+                Log.i("1111111111111",urls);
+
+
+                Fengzhuang.getFengzhuang().parseVedioItemBean(urls, new Fengzhuang.GetLiveVedioItemBean() {
+                    @Override
+                    public void show(LiveVedioItemBean bean) {
+                        hls_url = bean.getHls_url();
+                        title = bean.getTitle();
+                        String cdn_name = bean.getCdn_info().getCdn_name();
+                        final Intent intent=new Intent(getActivity(),Live_VedioActivity.class);
+                        intent.putExtra("hlsurl",hls_url);
+                        intent.putExtra("title",title);
+                        Log.i("11111111111",hls_url);
+                        Log.i("11111111111",title);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
     }
 
     @Override
     public int getFragmentLayoutId() {
         return R.layout.fragment_live__wonder;
     }
-
 
 }

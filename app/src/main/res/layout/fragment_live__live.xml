@@ -11,7 +11,7 @@
     android:layout_height="200dp"
     android:id="@+id/vitamio_viedoviews"
     />-->
-
+<!--
     <RelativeLayout
         android:id="@+id/lpanda_live_play_layout"
         android:layout_width="match_parent"
@@ -37,32 +37,101 @@
             android:layout_height="wrap_content"
             layout="@layout/live_playvedio"
             android:visibility="gone" />
-    </RelativeLayout>
+    </RelativeLayout>-->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+            android:id="@+id/jcvplayer"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />
+
+    </FrameLayout>
+
+
+
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_vediotitle"
         />
 
-     <ExpandableListView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/el_listview"
-          android:groupIndicator="@drawable/myexpandlistselect"
-          ></ExpandableListView>
 
-    <android.support.design.widget.TabLayout
+    <RelativeLayout
+        android:id="@+id/livepanda_jianjie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tab"
-        app:tabTextColor="#000"
-        app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabIndicatorColor="@color/colorPrimary"
-        ></android.support.design.widget.TabLayout>
+        android:paddingBottom="5dp"
+        android:background="@color/white" >
 
-    <android.support.v4.view.ViewPager
+        <TextView
+            android:id="@+id/brefLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="50px"
+            android:text="@string/jianjie"
+            android:textSize="36px"
+             />
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_alignTop="@+id/brefLabel"
+            android:layout_centerHorizontal="true"
+
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_clicktitle"
+                android:layout_width="48px"
+                android:layout_height="48px"
+                android:layout_centerInParent="true"
+                android:src="@drawable/lpanda_show" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_contenttitle"
+        android:textColor="#000"
+        android:visibility="gone"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:text="多视角直播"
+            android:id="@+id/bt_liveeye"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#fff"
+            android:text="边看边聊"
+            android:id="@+id/bt_livechat"
+            />
+    </LinearLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewpager"
-        ></android.support.v4.view.ViewPager>
+        android:id="@+id/fram"
+        ></FrameLayout>
+
 </LinearLayout>

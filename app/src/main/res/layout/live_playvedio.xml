@@ -57,7 +57,6 @@
             android:layout_height="36dp"
             android:src="@drawable/media_share_select"
             android:layout_marginLeft="9dp"
-
             android:id="@+id/app_video_share"
             />
         <ImageView
