@@ -5,16 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ScrollingView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -31,18 +30,9 @@ import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.R;
 import chongci.myapplication.activity.gungun_activity.GunGun_things;
 import chongci.myapplication.activity.voidactivity.GunGunActivity;
-import chongci.myapplication.adper.MyAdperdemo;
 import chongci.myapplication.adper.MyAdperdemo5;
 import chongci.myapplication.p.PresenterImpl;
 import chongci.myapplication.view.IView;
-import chongci.myapplication.widget.MyListview;
-
-import static android.R.id.list;
-import static chongci.myapplication.R.id.img_iv;
-import static chongci.myapplication.R.id.listview;
-import static chongci.myapplication.R.id.title_tv;
-import static chongci.myapplication.R.id.tupian;
-import static chongci.myapplication.R.id.view1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,6 +47,8 @@ public class WenhuaFragment extends Fragment implements IView {
     private TextView text;
     private ScrollView scrollView;
     private ProgressDialog myDialog;
+    private ProgressBar progress;
+    private ProgressDialog mDialog;
 
     public WenhuaFragment() {
         // Required empty public constructor
@@ -70,10 +62,14 @@ public class WenhuaFragment extends Fragment implements IView {
         View view1 = inflater.inflate(R.layout.fragment_wenhua, container, false);
         myDialog = new ProgressDialog(getActivity());
         initView(view1);
+
         presenter = new PresenterImpl(this);
         presenter.BeanWenHua("http://www.ipanda.com/kehuduan/video/index.json");
         return view1;
     }
+
+
+
 
     private void initView(View view1) {
 
@@ -97,6 +93,7 @@ public class WenhuaFragment extends Fragment implements IView {
                 startActivity(intent);
             }
         });
+
 
     }
 
