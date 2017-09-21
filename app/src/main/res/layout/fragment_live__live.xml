@@ -48,6 +48,19 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             />
+        <ImageView
+            android:id="@+id/lpanda_live_img"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/no_img" />
+
+        <ImageView
+            android:id="@+id/lpanda_live_operate"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/lpanda_pause" />
 
     </FrameLayout>
 

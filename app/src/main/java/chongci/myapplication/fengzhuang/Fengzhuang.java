@@ -25,23 +25,23 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class Fengzhuang {
-
     private static volatile Fengzhuang fengzhuang;
-
     private Handler handler;
-
     private OkHttpClient client;
-
 
     public static Fengzhuang getFengzhuang() {
 
         if (fengzhuang == null) {
 
+
             fengzhuang = new Fengzhuang();
+
 
         }
 
+
         return fengzhuang;
+
 
     }
 
@@ -101,12 +101,15 @@ public class Fengzhuang {
     public interface GunGunBeanl {
         void gugunjiexi(GunGunBean gunBean);
     }
-    public interface GetLiveVedioBean{
+
+    public interface GetLiveVedioBean {
         void show(LiveVideoBean bean);
     }
-    public interface GetLiveVedioItemBean{
+
+    public interface GetLiveVedioItemBean {
         void show(LiveVedioItemBean bean);
     }
+
     public void GunGunjiexi(String url, final GunGunBeanl gunBeanl) {
 
         final Request request = new Request.Builder().url(url).build();
@@ -426,6 +429,7 @@ public class Fengzhuang {
             @Override
             public void onFailure(Call call, IOException e) {
             }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String bb = response.body().string();
@@ -448,6 +452,7 @@ public class Fengzhuang {
             @Override
             public void onFailure(Call call, IOException e) {
             }
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String bb = response.body().string();

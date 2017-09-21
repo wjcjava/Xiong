@@ -27,16 +27,15 @@ class ChinaItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<LiveChinaBean.LiveBean> arrayLisst;
 
 
-
-        public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-            this.onItemClickListener = onItemClickListener;
-        }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
 
     public ChinaItemAdapter(FragmentActivity activity, List<LiveChinaBean.LiveBean> arrayLisst) {
 
-        this.activity=activity;
-        this.arrayLisst=arrayLisst;
+        this.activity = activity;
+        this.arrayLisst = arrayLisst;
 
     }
 
@@ -56,10 +55,10 @@ class ChinaItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-           final MyViewHolder myViewHolder = (MyViewHolder) holder;
-        Glide.with(activity).load(arrayLisst.get(position).getImage()).into( myViewHolder.liveChinaTabItemImg);
+        final MyViewHolder myViewHolder = (MyViewHolder) holder;
+        Glide.with(activity).load(arrayLisst.get(position).getImage()).into(myViewHolder.liveChinaTabItemImg);
         myViewHolder.liveChinaTabItemJianjieDetail.setText(arrayLisst.get(position).getBrief());
-       myViewHolder.liveChinaTabItemTitle.setText(arrayLisst.get(position).getTitle());
+        myViewHolder.liveChinaTabItemTitle.setText(arrayLisst.get(position).getTitle());
         myViewHolder.liveChinaTabItemJianjieImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,16 +106,18 @@ class ChinaItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView liveChinaTabItemJianjieDetail;
         @BindView(R.id.live_china_tab_item_jianjie_btn)
         RelativeLayout liveChinaTabItemJianjieBtn;
+
         public MyViewHolder(View itemView) {
             super(itemView);
-            liveChinaTabItemJianjieImg= (TextView) itemView.findViewById(R.id.live_china_tab_item_jianjie_img);
-            liveChinaTabItemImg= (ImageView) itemView.findViewById(R.id.live_china_tab_item_img);
-            liveChinaTabItemJianjieDetail= (TextView) itemView.findViewById(R.id.live_china_tab_item_jianjie_detail);
-            liveChinaTabItemTitle=(TextView) itemView.findViewById(R.id.live_china_tab_item_title);
+            liveChinaTabItemJianjieImg = (TextView) itemView.findViewById(R.id.live_china_tab_item_jianjie_img);
+            liveChinaTabItemImg = (ImageView) itemView.findViewById(R.id.live_china_tab_item_img);
+            liveChinaTabItemJianjieDetail = (TextView) itemView.findViewById(R.id.live_china_tab_item_jianjie_detail);
+            liveChinaTabItemTitle = (TextView) itemView.findViewById(R.id.live_china_tab_item_title);
         }
     }
-    public  void show(OnItemClickListener onClickListener){
-        onItemClickListener=onClickListener;
+
+    public void show(OnItemClickListener onClickListener) {
+        onItemClickListener = onClickListener;
     }
 
 

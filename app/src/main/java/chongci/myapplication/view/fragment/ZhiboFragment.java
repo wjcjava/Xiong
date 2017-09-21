@@ -15,32 +15,34 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import chongci.myapplication.Bean.WebBean;
-import chongci.myapplication.R;
-import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrClassicDefaultFooter;
-import in.srain.cube.views.ptr.PtrDefaultHandler2;
-
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import chongci.myapplication.Bean.BoBaoBean;
 import chongci.myapplication.Bean.ImageBean;
 import chongci.myapplication.Bean.ScreenBean;
+import chongci.myapplication.Bean.WebBean;
+import chongci.myapplication.R;
 import chongci.myapplication.activity.VideoActivity;
 import chongci.myapplication.activity.WebActivity;
+import chongci.myapplication.activity.prosentactivity.GeRenActivity;
 import chongci.myapplication.adper.BoBaoAdapter;
 import chongci.myapplication.fengzhuang.OkHttpUtil;
 import chongci.myapplication.p.BoImpl;
 import chongci.myapplication.view.BoBaoInter;
+import in.srain.cube.views.ptr.PtrClassicDefaultFooter;
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.PtrDefaultHandler2;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import okhttp3.OkHttpClient;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ZhiboFragment extends Fragment implements BoBaoInter {
-
-
+    Unbinder unbinder;
     private ImageView img_iv;
     private TextView title_tv;
     private RecyclerView bobao_recyclerView;
@@ -52,6 +54,8 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
     private BoBaoAdapter adapter;
     private int a = 1;
     private int pos;
+    private TextView person_tv;
+
     public ZhiboFragment() {
         // Required empty public constructor
     }
@@ -63,6 +67,7 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
         View view = inflater.inflate(R.layout.fragment_zhibo, container, false);
         initView(view);
         initData();
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -82,8 +87,16 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), VideoActivity.class);
-                intent.putExtra("video",scrBean);
-                intent.putExtra("pos",pos);
+                intent.putExtra("video", scrBean);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
+            }
+        });
+        person_tv = (TextView) view.findViewById(R.id.person_tv);
+        person_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), GeRenActivity.class);
                 startActivity(intent);
             }
         });
@@ -100,6 +113,7 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
 
     /**
      * RecyclerView 上拉、下拉
+     *
      * @param boBaoBean
      */
     @Override
@@ -191,4 +205,9 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
         webBee.add(webBean);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

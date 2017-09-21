@@ -1,7 +1,12 @@
 package chongci.myapplication.activity;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -12,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,23 +33,32 @@ import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 import com.umeng.socialize.utils.Log;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import chongci.myapplication.Bean.BoBaoBean;
+import chongci.myapplication.Bean.GreenDaoBean;
 import chongci.myapplication.Bean.ImageBean;
 import chongci.myapplication.Bean.ScreenBean;
 import chongci.myapplication.Bean.WebBean;
 import chongci.myapplication.R;
+import chongci.myapplication.dao.GreenDaoBeanDao;
+import chongci.myapplication.dao.GreenDaoUtil;
 import chongci.myapplication.p.BoImpl;
 import chongci.myapplication.view.BoBaoInter;
+
+import static android.R.attr.id;
+import static chongci.myapplication.R.drawable.share;
 
 public class WebActivity extends AppCompatActivity implements View.OnClickListener, BoBaoInter {
 
     private ImageView back_iv;
-    private ImageView shoucang_iv;
+
     private ImageView fenxiang_iv;
     private int CODE_FOR_WRITE_PERMISSION = 0;
     private ArrayList<BoBaoBean.ListBean> list;
@@ -56,22 +71,36 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
     private TextView time_tv;
     private TextView content_tv;
     private Handler handler;
+    private GreenDaoBeanDao shujudanli;
+    private GreenDaoBean bean;
+    private ImageView shoucang_iv;
 
+    int cunt=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+
         initView();
         initData();
+
+        SharedPreferences sharedPreferences=getSharedPreferences("testSP", Context.MODE_PRIVATE);
+        //第一步:取出字符串形式的Bitmap
+        String imageString=sharedPreferences.getString("image", "");
+        //第二步:利用Base64将字符串转换为ByteArrayInputStream
+        byte[] byteArray=Base64.decode(imageString, Base64.DEFAULT);
+        ByteArrayInputStream byteArrayInputStream=new ByteArrayInputStream(byteArray);
+        //第三步:利用ByteArrayInputStream生成Bitmap
+        Bitmap bitmap=BitmapFactory.decodeStream(byteArrayInputStream);
+        shoucang_iv.setImageBitmap(bitmap);
+        //int show1 = sharedPreferences.getInt("show", count);
     }
 
     private void initView() {
-        back_iv = (ImageView) findViewById(R.id.back_iv);
-        shoucang_iv = (ImageView) findViewById(R.id.shoucang_iv);
-        fenxiang_iv = (ImageView) findViewById(R.id.fenxiang_iv);
 
+        back_iv = (ImageView) findViewById(R.id.back_iv);
+        fenxiang_iv = (ImageView) findViewById(R.id.fenxiang_iv);
         back_iv.setOnClickListener(this);
-        shoucang_iv.setOnClickListener(this);
         fenxiang_iv.setOnClickListener(this);
         title_tv = (TextView) findViewById(R.id.title_tv);
         title_tv.setOnClickListener(this);
@@ -81,6 +110,63 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         time_tv.setOnClickListener(this);
         content_tv = (TextView) findViewById(R.id.content_tv);
         content_tv.setOnClickListener(this);
+        shoucang_iv = (ImageView) findViewById(R.id.shoucang_iv);
+        shoucang_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (cunt){
+                    case 0:
+                        cunt=1;
+                        shoucang_iv.setImageResource(R.drawable.collect_yes);
+                        Toast.makeText(WebActivity.this, "已添加到收藏", Toast.LENGTH_SHORT).show();
+                        shujudanli = GreenDaoUtil.getDianli().shujudanli(WebActivity.this);
+                        bean = new GreenDaoBean();
+                        bean.setImg(list.get(pos).getPicurl());
+                        bean.setTitle(list.get(pos).getTitle());
+                        bean.setTime(list.get(pos).getFocus_date()+"");
+                        shujudanli.insert(bean);
+
+                        Bitmap bitmap=BitmapFactory.decodeResource(getResources(), R.drawable.collect_yes);
+                        //第一步:将Bitmap压缩至字节数组输出流ByteArrayOutputStream
+                        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+                        //第二步:利用Base64将字节数组输出流中的数据转换成字符串String
+                        byte[] byteArray=byteArrayOutputStream.toByteArray();
+                        String imageString=new String(Base64.encodeToString(byteArray, Base64.DEFAULT));
+                        //第三步:将String保持至SharedPreferences
+                        SharedPreferences sharedPreferences=getSharedPreferences("testSP", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.putInt("show",count);
+                        editor.putString("image", imageString);
+                        editor.commit();
+
+                        break;
+                    case 1:
+                        cunt=0;
+                        shoucang_iv.setImageResource(R.drawable.collect_no);
+                        Toast.makeText(WebActivity.this, "已取消收藏", Toast.LENGTH_SHORT).show();
+                        GreenDaoBeanDao shujudanli1 = GreenDaoUtil.getDianli().shujudanli(WebActivity.this);
+                        List<GreenDaoBean> list = shujudanli1.queryBuilder().list();
+                        list.remove(bean);
+                        shujudanli1.delete(bean);
+
+                        bitmap=BitmapFactory.decodeResource(getResources(), R.drawable.collect_no);
+                        //第一步:将Bitmap压缩至字节数组输出流ByteArrayOutputStream
+                        byteArrayOutputStream=new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+                        //第二步:利用Base64将字节数组输出流中的数据转换成字符串String
+                        byteArray=byteArrayOutputStream.toByteArray();
+                        imageString=new String(Base64.encodeToString(byteArray, Base64.DEFAULT));
+                        //第三步:将String保持至SharedPreferences
+                        sharedPreferences=getSharedPreferences("testSP", Context.MODE_PRIVATE);
+                        editor=sharedPreferences.edit();
+                        editor.putString("image", imageString);
+                        editor.putInt("show",count);
+                        editor.commit();
+                        break;
+                }
+            }
+        });
     }
 
     private void initData() {
@@ -89,31 +175,16 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         pos = getIntent().getIntExtra("pos", 0);
 
         BoImpl boImplP = new BoImpl(this);
-        boImplP.getWebBean("http://api.cntv.cn/article/contentinfo?id="+ list.get(pos).getId()+"&serviceId=panda");
+        boImplP.getWebBean("http://api.cntv.cn/article/contentinfo?id=" + list.get(pos).getId() + "&serviceId=panda");
         check();
     }
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
             case R.id.back_iv:
                 finish();
-                break;
-            case R.id.shoucang_iv:
-                shoucang_iv.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (count == 0) {
-                            shoucang_iv.setImageResource(R.drawable.collect_yes);
-                            count = 1;
-                            Toast.makeText(WebActivity.this, "已添加到收藏", Toast.LENGTH_SHORT).show();
-                        } else {
-                            shoucang_iv.setImageResource(R.drawable.collect_no);
-                            count = 0;
-                            Toast.makeText(WebActivity.this, "已取消收藏", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
                 break;
             case R.id.fenxiang_iv:
                 View views = View.inflate(WebActivity.this, R.layout.item_popup, null);
@@ -182,9 +253,7 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         @Override
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat", "platform" + platform);
-
             Toast.makeText(WebActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
@@ -212,7 +281,6 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         }//需要弹出dialog让用户手动赋予权限
         else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION}, CODE_FOR_WRITE_PERMISSION);
-
         }
     }
 
@@ -309,6 +377,5 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
             }
         });
         t.start();
-
     }
 }

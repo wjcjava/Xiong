@@ -87,11 +87,11 @@ public class HtmlActivity extends AppCompatActivity implements View.OnClickListe
         ad = new AlertDialog.Builder(HtmlActivity.this, R.style.MediaController_Text).create();
         ad.show();
         ad.setCanceledOnTouchOutside(true);
-//得到对话框的窗口
+    //得到对话框的窗口
         Window w = ad.getWindow();
-//设置对话框位于屏幕的底部
+    //设置对话框位于屏幕的底部
         w.setGravity(Gravity.BOTTOM);
-//设置自定义布局
+    //设置自定义布局
         View view1 = View.inflate(HtmlActivity.this, R.layout.layout_dialog, null);
         w.setContentView(view1);
         qq= (ImageView) view1.findViewById(R.id.qq);
@@ -100,7 +100,7 @@ public class HtmlActivity extends AppCompatActivity implements View.OnClickListe
         //设置对话框无边距
         w.getDecorView().setPadding(0, 0, 0, 0);
 
-//给对话框设置宽高
+        //给对话框设置宽高
         WindowManager wm = getWindowManager();
         Display display = wm.getDefaultDisplay();
         WindowManager.LayoutParams lp = ad.getWindow().getAttributes();
@@ -135,9 +135,7 @@ check();
         @Override
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat","platform"+platform);
-
             Toast.makeText(HtmlActivity.this, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override

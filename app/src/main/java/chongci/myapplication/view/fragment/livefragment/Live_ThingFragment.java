@@ -58,7 +58,7 @@ public class Live_ThingFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        String url="http://api.cntv.cn/video/videolistById?vsid=VSET100167216881&n=7&serviceId=panda&o=desc&of=time&p="+page;
+        String url="http://api.cntv.cn/video/videolistById?vsid=VSET100237714751&n=7&serviceId=panda&o=desc&of=time&p="+page;
         Fengzhuang.getFengzhuang().parthlive(url, new Fengzhuang.GetLiveBean() {
             @Override
             public void show(LiveBean bean) {
@@ -72,7 +72,7 @@ public class Live_ThingFragment extends BaseFragment {
     public  void  initIntent(){
         adapter.setItemOnClick(new MyLiveAdapter.Listener() {
             @Override
-            public void click(View v, int position) {
+            public void click(View v, final int position) {
 
                 String vid = list.get(position).getVid();
                 Log.i("11111111111",vid);
@@ -86,8 +86,13 @@ public class Live_ThingFragment extends BaseFragment {
                     public void show(LiveVedioItemBean bean) {
                         hls_url = bean.getHls_url();
                         title = bean.getTitle();
+
                         String cdn_name = bean.getCdn_info().getCdn_name();
                         final Intent intent=new Intent(getActivity(),Live_VedioActivity.class);
+                        String img = list.get(position).getImg();
+                        String urlvedio = list.get(position).getUrl();
+                        intent.putExtra("urlvedio",urlvedio);
+                        intent.putExtra("img",img);
                         intent.putExtra("hlsurl",hls_url);
                         intent.putExtra("title",title);
                         Log.i("11111111111",hls_url);
