@@ -114,7 +114,6 @@ public class WebActivity extends AppCompatActivity implements View.OnClickListen
         shoucang_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 switch (cunt){
                     case 0:
                         cunt=1;
