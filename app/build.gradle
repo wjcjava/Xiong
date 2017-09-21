@@ -54,6 +54,6 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.3.2'
     compile 'fm.jiecao:jiecaovideoplayer:2.0'
     compile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    testCompile 'junit:junit:4.12'
     compile 'org.greenrobot:eventbus:3.0.0'
+    testCompile 'junit:junit:4.12'
 }
