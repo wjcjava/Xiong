@@ -50,12 +50,13 @@ public class Live_EyeFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String liveid = list.get(position).getId();
                 String livetitle = list.get(position).getTitle();
+                String liveimage = list.get(position).getImage();
                 Log.i("99999999",liveid);
                 Log.i("99999999",livetitle);
                 //发送广播
                 Intent intent = new Intent();
                 intent.putExtra("liveid", liveid);
-                intent.putExtra("livetitle",livetitle);
+                intent.putExtra("livetitle",livetitle);intent.putExtra("liveimage",liveimage);
                 intent.setAction("com.example.socketserverdemo.SocketService");
                 getActivity().sendBroadcast(intent);
 

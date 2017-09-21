@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chongci.myapplication.R;
+import chongci.myapplication.dao.ChangeBeanDao;
+import chongci.myapplication.dao.DaoMaster;
+import chongci.myapplication.dao.DaoSession;
 
 
 /**

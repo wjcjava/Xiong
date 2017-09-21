@@ -18,6 +18,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    greendao{
+        schemaVersion 1
+        daoPackage 'chongci.myapplication.dao'
+        targetGenDir 'src/main/java'
+    }
 }
 
 dependencies {

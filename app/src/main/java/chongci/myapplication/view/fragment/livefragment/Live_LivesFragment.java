@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +44,7 @@ public class Live_LivesFragment extends BaseFragment implements View.OnClickList
     private List<String> titlelist = new ArrayList<String>();
     private io.vov.vitamio.widget.VideoView video_view;
     private TextView contenttitle;
-    private ImageView clicktile;
+    private ImageView clicktile; private ImageView lpanda_live_operate,lpanda_live_img;
     private Button bt_liveeye;
     private Button bt_livechat;
     private TextView tv_vediotitle;
@@ -57,6 +60,7 @@ public class Live_LivesFragment extends BaseFragment implements View.OnClickList
     private String livetitle;
     private String hls1;
     private String parseurl;
+    private String liveimage;
 
 
     @Override
@@ -77,44 +81,60 @@ public class Live_LivesFragment extends BaseFragment implements View.OnClickList
 
 
         clicktile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (a) {
+                    case 0:
+                        a = 1;
+                        contenttitle.setVisibility(View.VISIBLE);
+                        clicktile.setImageResource(R.drawable.lpanda_off);
+                        break;
+                    case 1:
+                        a = 0;
+                        clicktile.setImageResource(R.drawable.lpanda_show);
+                        contenttitle.setVisibility(View.GONE);
+                        break;
+                }
+
+            }
+        });
+    }
+
+
     @Override
-    public void onClick(View v) {
-        switch (a) {
-            case 0:
-                a = 1;
-                contenttitle.setVisibility(View.VISIBLE);
-                clicktile.setImageResource(R.drawable.lpanda_off);
-                break;
-            case 1:
-                a = 0;
-                clicktile.setImageResource(R.drawable.lpanda_show);
-                contenttitle.setVisibility(View.GONE);
-                break;
-        }
-
-    }
-});
-    }
-
-
-        @Override
     protected void initView(View view) {
         jcvplayer = (JCVideoPlayer) view.findViewById(R.id.jcvplayer);
         contenttitle = (TextView) view.findViewById(R.id.tv_contenttitle);
-            tv_vediotitle = (TextView) view.findViewById(R.id.tv_vediotitle);
+        tv_vediotitle = (TextView) view.findViewById(R.id.tv_vediotitle);
         clicktile = (ImageView) view.findViewById(R.id.iv_clicktitle);
+        lpanda_live_operate = (ImageView) view.findViewById(R.id.lpanda_live_operate);
+        lpanda_live_img = (ImageView) view.findViewById(R.id.lpanda_live_img);
         bt_liveeye = (Button) view.findViewById(R.id.bt_liveeye);
         bt_livechat = (Button) view.findViewById(R.id.bt_livechat);
         fram = (FrameLayout) view.findViewById(R.id.fram);
-        // 進入系統默認為movie
+        String ser="http://ipanda.vtime.cntv.cloudcdn.net/live/ipandahls_/index.m3u8?AUTH=an+zYnLPuLGXZLIAMLXB4hnpW5WGmN8S1M3SYC27aX1JMaSAdXxxZvm0AAUZ5cj/0M1MZZIYhcSCZ0azfxcKsQ==";
+        String str="成都地区高清精切线路";
+        jcvplayer.setUp(ser,str);
+        tv_vediotitle.setText("[正在直播]："+ str);
+
+        // 進入系統默認為哪个界面
         manager = getActivity().getSupportFragmentManager();
         transactionn = manager.beginTransaction();
         live_eyeFragment = new Live_EyeFragment();
         transactionn.add(R.id.fram,live_eyeFragment);
         transactionn.commit();
 
-            bt_liveeye.setOnClickListener(this);
+        bt_liveeye.setOnClickListener(this);
         bt_livechat.setOnClickListener(this);
+        lpanda_live_operate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lpanda_live_img.setVisibility(View.GONE);
+                lpanda_live_operate.setVisibility(View.GONE);
+            }
+        });
+
+
     }
 
     @Override
@@ -164,6 +184,7 @@ public class Live_LivesFragment extends BaseFragment implements View.OnClickList
             Bundle bundle = intent.getExtras();
             liveid = bundle.getString("liveid");
             livetitle = bundle.getString("livetitle");
+            liveimage = bundle.getString("liveimage");
             tv_vediotitle.setText("[正在直播]："+ livetitle);
             parseurl = "http://vdn.live.cntv.cn/api2/live.do?channel=pa://cctv_p2p_hd"+liveid+"&amp;client=androidapp'";
             Fengzhuang.getFengzhuang().parseVedioBean(parseurl, new Fengzhuang.GetLiveVedioBean() {
@@ -171,13 +192,14 @@ public class Live_LivesFragment extends BaseFragment implements View.OnClickList
                 public void show(LiveVideoBean bean) {
                     hls1 = bean.getHls_url().getHls1();
                     jcvplayer.setUp(hls1,livetitle);
+                    Glide.with(getActivity())
+                            .load(liveimage)
+                            .into(jcvplayer.ivThumb);
                 }
             });
 
-
         }
     }
-
 }
 
 

@@ -158,7 +158,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    @Override
+   /* @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             if(isExit == false){
@@ -176,7 +176,7 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
             }
         }
         return false;
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
