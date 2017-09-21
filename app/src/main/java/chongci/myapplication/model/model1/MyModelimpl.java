@@ -1,5 +1,6 @@
 package chongci.myapplication.model.model1;
 
+import chongci.myapplication.adper.TobGunGunxiubean;
 import chongci.myapplication.fengzhuang.Fengzhuang1;
 import chongci.myapplication.p.presenter1.Mypresenter;
 import chongci.myapplication.voidbean.JingCaiBean;
@@ -26,6 +27,16 @@ public class MyModelimpl implements MyModel{
             @Override
             public void showtu1(JingCaiBean jingCaiBean) {
                 mypresenter.qingqiu1(jingCaiBean);
+            }
+        });
+    }
+
+    @Override
+    public void gungunxiu(String url2, final Mypresenter mypresenter) {
+        Fengzhuang1.getFengzhuang().gunxiujiexi(url2, new Fengzhuang1.Gungun() {
+            @Override
+            public void gungunjiexi(TobGunGunxiubean gunxiubean) {
+                mypresenter.gungunxiu(gunxiubean);
             }
         });
     }

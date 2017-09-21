@@ -1,5 +1,6 @@
 package chongci.myapplication.p.presenter1;
 
+import chongci.myapplication.adper.TobGunGunxiubean;
 import chongci.myapplication.voidbean.JingCaiBean;
 import chongci.myapplication.voidbean.PanPanBean;
 
@@ -13,4 +14,7 @@ public interface Mypresenter {
 
     void qingqiu1(String url1);
     void qingqiu1(JingCaiBean jingCaiBean);
+
+    void gungunxiu(String url1);
+    void gungunxiu(TobGunGunxiubean gunxiubean);
 }

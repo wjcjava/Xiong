@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import chongci.myapplication.adper.TobGunGunxiubean;
 import chongci.myapplication.voidbean.JingCaiBean;
 import chongci.myapplication.voidbean.PanPanBean;
 import okhttp3.Call;
@@ -56,7 +57,59 @@ public class Fengzhuang1 {
 
     }
 
+    public interface Gungun{
+      void   gungunjiexi(TobGunGunxiubean gunxiubean);
+    }
 
+
+
+
+
+
+
+    public void gunxiujiexi(String url, final Gungun gungun) {
+
+        final Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+
+            @Override
+
+            public void onFailure(Call call, IOException e) {
+
+
+            }
+
+
+            @Override
+
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String bb = response.body().string();
+
+                Gson gson = new Gson();
+
+                final TobGunGunxiubean bean = gson.fromJson(bb,TobGunGunxiubean.class);
+
+                handler.post(new Runnable() {
+
+                    @Override
+
+                    public void run() {
+
+                       gungun.gungunjiexi(bean);
+
+                    }
+
+                });
+
+
+            }
+
+        });
+
+
+    }
     public void jiexi(String url, final GetBeantu getBeantu) {
 
         final Request request = new Request.Builder().url(url).build();
