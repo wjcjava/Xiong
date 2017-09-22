@@ -8,12 +8,12 @@
         "source": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\scrubber_control_focused_holo.png"
     },
     {
-        "merged": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_control_disabled_holo.png",
-        "source": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\scrubber_control_disabled_holo.png"
-    },
-    {
         "merged": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_track_holo_dark.9.png",
         "source": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\scrubber_track_holo_dark.9.png"
+    },
+    {
+        "merged": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_control_disabled_holo.png",
+        "source": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\bundles\\debug\\res\\drawable-xhdpi-v4\\scrubber_control_disabled_holo.png"
     },
     {
         "merged": "D:\\Training\\AndroidCode\\Xiong\\vitamio\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4\\scrubber_secondary_holo.9.png",

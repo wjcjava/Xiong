@@ -25,5 +25,4 @@ public class Wenti2Fragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_wenti2, container, false);
     }
-
 }

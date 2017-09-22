@@ -26,5 +26,4 @@ public class Zhibo extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_zhibo2, container, false);
     }
-
 }
