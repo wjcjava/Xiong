@@ -1,6 +1,7 @@
 package chongci.myapplication.model.model1;
 
 import chongci.myapplication.p.presenter1.Mypresenter;
+import chongci.myapplication.p.presenter1.MypresenterImpl;
 
 /**
  * Created by Administrator on 2017/9/15.

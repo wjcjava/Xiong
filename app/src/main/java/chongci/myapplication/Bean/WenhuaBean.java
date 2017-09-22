@@ -29,7 +29,7 @@ public class WenhuaBean implements Serializable{
         this.list = list;
     }
 
-    public static class BigImgBean {
+    public static class BigImgBean{
         /**
          * url : http://live.ipanda.com/2017/09/15/VIDEAc5feUSci2yC8fu77kZ8170915.shtml
          * image : http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/9/16/1505549948920_493.jpg

@@ -93,7 +93,7 @@
                 android:gravity="center"
                 android:text="微信" />
             <RadioButton
-                android:id="@+id/QQ"
+                android:id="@+id/login_QQ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -141,7 +141,6 @@
         <EditText
             android:inputType="phone"
             android:clickable="true"
-
             android:id="@+id/num"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -191,20 +190,6 @@
         android:orientation="horizontal"
 
         >
-
-        <ImageView
-            android:id="@+id/pass_x"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_heightPercent="7%w"
-            app:layout_widthPercent="7%w"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:src="@mipmap/delete_gray"/>
-
         <EditText
             android:clickable="true"
             android:id="@+id/pass"
@@ -217,9 +202,19 @@
             android:password="true"
             app:layout_heightPercent="100%h"
             app:layout_widthPercent="100%w"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            />
+        <ImageView
+            android:id="@+id/pass_x"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="7%w"
+            app:layout_widthPercent="7%w"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/delete_gray"/>
     </com.zhy.android.percent.support.PercentRelativeLayout>
 
     <TextView
@@ -258,7 +253,5 @@
         android:background="@drawable/login_butt"
         android:text="登录"
         android:textColor="#ffffff"
-
         />
-
 </com.zhy.android.percent.support.PercentLinearLayout>
