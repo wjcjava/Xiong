@@ -32,7 +32,6 @@ public class SheActivity extends AppCompatActivity implements View.OnClickListen
         initView();
     }
 
-
     private void initView() {
         set_back = (ImageView) findViewById(R.id.set_back);
         laji = (TextView) findViewById(R.id.laji);
