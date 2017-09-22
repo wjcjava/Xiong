@@ -1,6 +1,7 @@
 package chongci.myapplication.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import chongci.myapplication.R;
+import chongci.myapplication.activity.prosentactivity.GeRenActivity;
 import chongci.myapplication.view.fragment.livefragment.Live_AsBearFragment;
 import chongci.myapplication.view.fragment.livefragment.Live_LivesFragment;
 import chongci.myapplication.view.fragment.livefragment.Live_MengFragment;
@@ -36,6 +39,7 @@ public class GuanchaFragment extends Fragment {
     private ViewPager viewpage;
     private List<Fragment> fraglist = new ArrayList<Fragment>();
     private List<String> titlelist = new ArrayList<String>();
+    private TextView tv_vediotype;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +54,14 @@ public class GuanchaFragment extends Fragment {
     private void initView(View view) {
         tab = (TabLayout) view.findViewById(R.id.tb_tabfirst);
         viewpage = (ViewPager) view.findViewById(R.id.vp_viewpager);
-
+        tv_vediotype = (TextView) view.findViewById(R.id.tv_vediotype);
+        tv_vediotype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), GeRenActivity.class);
+                startActivity(intent);
+            }
+        });
         initTitle();
         tab.addTab(tab.newTab().setText(titlelist.get(0)));
         tab.addTab(tab.newTab().setText(titlelist.get(1)));
@@ -74,8 +85,6 @@ public class GuanchaFragment extends Fragment {
                 return true;
             }
         });
-
-
     }
 
     private void initTitle() {
@@ -88,7 +97,6 @@ public class GuanchaFragment extends Fragment {
         titlelist.add("熊猫那些事儿");
         titlelist.add("特别节目");
         titlelist.add("原创新闻");
-
     }
 
     private void initFranment() {
@@ -101,7 +109,6 @@ public class GuanchaFragment extends Fragment {
         fraglist.add(new Live_ThingFragment());
         fraglist.add(new Live_SpecialFragment());
         fraglist.add(new Live_OriginalFragment());
-
     }
 
     public class MyAdapter extends FragmentPagerAdapter {
@@ -128,8 +135,4 @@ public class GuanchaFragment extends Fragment {
             return titlelist.get(position);
         }
     }
-
 }
-
-
-

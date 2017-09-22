@@ -37,6 +37,8 @@ import in.srain.cube.views.ptr.PtrDefaultHandler2;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import okhttp3.OkHttpClient;
 
+import static com.umeng.socialize.utils.DeviceConfig.context;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -120,8 +122,14 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
     public void onSuccess(final BoBaoBean boBaoBean) {
         list.addAll(boBaoBean.getList());
         adapter = new BoBaoAdapter(getContext(), list);
-        bobao_recyclerView.setSaveEnabled(true);
-        bobao_recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        //bobao_recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        bobao_recyclerView.setLayoutManager(linearLayoutManager);
         bobao_recyclerView.setAdapter(adapter);
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -185,7 +193,7 @@ public class ZhiboFragment extends Fragment implements BoBaoInter {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                adapter.notifyDataSetChanged();
+                                 adapter.notifyDataSetChanged();
                             }
                         });
                     }

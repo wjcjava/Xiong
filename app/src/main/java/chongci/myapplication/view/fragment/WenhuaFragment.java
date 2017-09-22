@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +26,12 @@ import chongci.myapplication.Bean.BeanTwo;
 import chongci.myapplication.Bean.GunGunBean;
 import chongci.myapplication.Bean.WenhuaBean;
 import chongci.myapplication.R;
+import chongci.myapplication.activity.gungun_activity.GunGun_things;
+import chongci.myapplication.activity.prosentactivity.GeRenActivity;
 import chongci.myapplication.activity.voidactivity.GunGunActivity;
-import chongci.myapplication.adper.MyAdperdemo;
 import chongci.myapplication.adper.MyAdperdemo5;
 import chongci.myapplication.p.PresenterImpl;
 import chongci.myapplication.view.IView;
-
-import static chongci.myapplication.R.id.listview;
-import static chongci.myapplication.R.id.tupian;
-import static chongci.myapplication.R.id.view1;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +44,7 @@ public class WenhuaFragment extends Fragment implements IView {
     private ImageView tupian;
     private ListView listview;
     private TextView text;
+    private TextView tv_wenhuatype;
 
     public WenhuaFragment() {
         // Required empty public constructor
@@ -79,10 +78,20 @@ public class WenhuaFragment extends Fragment implements IView {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), "你点击了我", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), GunGun_things.class);
+                intent.putExtra("list", (Serializable) list1);
+                startActivity(intent);
             }
         });
 
+        tv_wenhuatype = (TextView) view1.findViewById(R.id.tv_wenhuatype);
+        tv_wenhuatype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), GeRenActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -110,7 +119,6 @@ public class WenhuaFragment extends Fragment implements IView {
         listBeanList.addAll(bean.getBigImg());
         Glide.with(getActivity()).load(listBeanList.get(0).getImage()).into(tupian);
         text.setText(listBeanList.get(0).getTitle());
-
 
         list1.addAll(bean.getList());
         final MyAdperdemo5 adperdemo = new MyAdperdemo5(getActivity(), list1);

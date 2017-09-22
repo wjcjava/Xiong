@@ -158,25 +158,25 @@ public class MyActivity extends AppCompatActivity implements View.OnClickListene
     }
 
 
-   /* @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK){
-            if(isExit == false){
-                Toast.makeText(MyActivity.this, "再按一次返回键回到桌面", Toast.LENGTH_SHORT).show();
-                if(!hasTask){
-                    tExit.schedule(task, 2000);
-                    SharedPreferences shar = getSharedPreferences("setting", 0);
-                    shar.edit().clear().commit();
-                }
-            }else{
-                finish();
-                System.exit(0);
-
-                finish();
-            }
-        }
-        return false;
-    }*/
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if(keyCode == KeyEvent.KEYCODE_BACK){
+//            if(isExit == false){
+//                Toast.makeText(MyActivity.this, "再按一次返回键回到桌面", Toast.LENGTH_SHORT).show();
+//                if(!hasTask){
+//                    tExit.schedule(task, 2000);
+//                    SharedPreferences shar = getSharedPreferences("setting", 0);
+//                    shar.edit().clear().commit();
+//                }
+//            }else{
+//                finish();
+//                System.exit(0);
+//
+//                finish();
+//            }
+//        }
+//        return false;
+//    }
 
     @Override
     protected void onDestroy() {

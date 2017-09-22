@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="142.0dp"
-        android:layout_height="43.0dp"
-        android:layout_centerInParent="true"
-        >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="162.0dp"
+    android:layout_height="43.0dp">
+
         <TextView
-            android:id="@+id/text_item"
-            android:layout_width="142.0dp"
-            android:layout_height="43.0dp"
+            android:id="@+id/text_ite"
+            android:layout_width="132.0dp"
+            android:layout_height="33.0dp"
             android:gravity="center"
             android:background="#ffffff"
             android:textColor="#000000"
@@ -27,10 +23,8 @@
             android:layout_height="20dp"
             android:background="@drawable/shape_little_blue_corner"
             android:layout_alignParentRight="true"
-
             android:src="@drawable/live_china_delect_channel"
-
-            android:visibility="visible"
+            android:visibility="gone"
             />
-    </RelativeLayout>
-</LinearLayout>
+
+</RelativeLayout>

@@ -44,11 +44,12 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <RelativeLayout
+                    android:id="@+id/sss"
                     android:layout_width="match_parent"
                     android:layout_height="200dp">
                     <ImageView
@@ -69,8 +70,9 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/bobao_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/sss"></android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
         </ScrollView>
     </in.srain.cube.views.ptr.PtrFrameLayout>
 </RelativeLayout>

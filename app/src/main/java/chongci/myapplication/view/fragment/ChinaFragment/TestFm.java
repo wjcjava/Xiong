@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -17,7 +20,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import chongci.myapplication.MainActivity;
 import chongci.myapplication.R;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -29,12 +34,17 @@ import okhttp3.Response;
  */
 
 public class  TestFm extends Fragment {
+    JCVideoPlayer re;
+    int pos;
 //    http://www.ipanda.com/kehuduan/liebiao/taishan/index.json
     List<LiveChinaBean.LiveBean> arrayLisst=new ArrayList<>();
     String baseurl="http://www.ipanda.com/kehuduan/liebiao/";
     ChinaItemAdapter adapter;
    String addurl;
+    String live_url;
     int flag;
+    ArrayList<String> fujson=new ArrayList<>();
+
 
      private Handler handler = new Handler() {
              @Override
@@ -94,7 +104,7 @@ public class  TestFm extends Fragment {
 
             public void onLoadMore() {
 
-
+                news_xrecycle.loadMoreComplete();//加载更多完成
            }
         });
 
@@ -106,10 +116,10 @@ public class  TestFm extends Fragment {
 
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(baseurl+addurl+"/index.json")
+                .url(addurl)
 
                 .build();
-        Log.e("aaaaaaa---------",baseurl+addurl+"/index.json");
+        Log.e("aaaaaaa---------",baseurl+addurl);
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -126,6 +136,17 @@ public class  TestFm extends Fragment {
                 LiveChinaBean tiaoz = gson.fromJson(aa, LiveChinaBean.class);
 
                 arrayLisst.addAll(tiaoz.getLive());
+
+                   for (LiveChinaBean.LiveBean liveBean:arrayLisst){
+
+                     ;
+                       fujson.add(liveBean.getId());
+
+
+
+                   }
+
+
 
                getActivity(). runOnUiThread(new Runnable() {
                     @Override
@@ -152,6 +173,7 @@ public class  TestFm extends Fragment {
 
 
 
+
     public static TestFm newInstance(String addurl,int flag){
         Bundle bundle = new Bundle();
         bundle.putString("content",addurl);
@@ -162,4 +184,9 @@ public class  TestFm extends Fragment {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
+    }
 }

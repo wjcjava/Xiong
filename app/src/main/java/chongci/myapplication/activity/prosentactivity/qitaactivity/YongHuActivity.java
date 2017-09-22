@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -52,6 +53,12 @@ public class YongHuActivity extends AppCompatActivity {
         fanhui = (ImageView) findViewById(R.id.fanhui);
         layout = (TabLayout) findViewById(R.id.layout);
         pager = (ViewPager) findViewById(R.id.pager);
+        fanhui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private class MyAdper extends FragmentPagerAdapter {

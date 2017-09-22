@@ -1,5 +1,6 @@
 package chongci.myapplication.p.presenter1;
 
+import chongci.myapplication.adper.TobGunGunxiubean;
 import chongci.myapplication.model.model1.MyModel;
 import chongci.myapplication.model.model1.MyModelimpl;
 import chongci.myapplication.view.VoidView;
@@ -37,5 +38,14 @@ public class MypresenterImpl implements Mypresenter{
     @Override
     public void qingqiu1(JingCaiBean jingCaiBean) {
         voidView.chenggong3(jingCaiBean);
+    }
+
+    @Override
+    public void gungunxiu(String url1) {myModel.gungunxiu(url1,this);
+    }
+
+    @Override
+    public void gungunxiu(TobGunGunxiubean gunxiubean) {
+        voidView.GunGunxiuBean(gunxiubean);
     }
 }

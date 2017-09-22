@@ -374,7 +374,7 @@ public class ShouyeFragment extends Fragment implements IView, View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), PanPanActivity.class);
-                intent.putExtra("mingzi",list6.get(i).getTitle());
+                intent.putExtra("mingzi",list4.get(i).getTitle());
                 intent.putExtra("shipin", list4.get(i).getPid());
                 startActivity(intent);
             }

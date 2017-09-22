@@ -1,8 +1,37 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.WenhuaFragment">
+    tools:context=".view.fragment.WenhuaFragment"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:text="熊猫文化"/>
+        <TextView
+            android:id="@+id/tv_wenhuatype"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/person_sign" />
+    </LinearLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -14,12 +43,11 @@
 
             <ImageView
                 android:id="@+id/tupian"
-                android:background="@color/colorAccent"
+                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"/>
             <TextView
-
                 android:id="@+id/text"
                 android:textSize="20dp"
                 android:textColor="#fff"
@@ -32,11 +60,10 @@
 
         </RelativeLayout>
         <chongci.myapplication.widget.MyListview
-
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></chongci.myapplication.widget.MyListview>
     </LinearLayout>
-
-
 </ScrollView>
+
+</LinearLayout>

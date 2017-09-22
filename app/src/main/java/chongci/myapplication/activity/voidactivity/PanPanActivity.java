@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import chongci.myapplication.R;
+import chongci.myapplication.adper.TobGunGunxiubean;
 import chongci.myapplication.p.presenter1.MypresenterImpl;
 import chongci.myapplication.view.VoidView;
 import chongci.myapplication.voidbean.JingCaiBean;
@@ -69,8 +70,10 @@ public class PanPanActivity extends AppCompatActivity implements VoidView {
 
     }
 
+    @Override
+    public void GunGunxiuBean(TobGunGunxiubean gunxiubean) {
 
-
+    }
 
 
     private void initView() {

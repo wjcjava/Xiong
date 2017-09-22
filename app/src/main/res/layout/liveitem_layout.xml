@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/re_livee"
@@ -15,6 +17,8 @@
             android:layout_height="41dp"
             android:layout_marginRight="41dp"
             android:background="#fff"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="#656565"
             />
 
         <ImageView
@@ -29,10 +33,10 @@
             />
 
     </RelativeLayout>
-<android.support.v4.view.ViewPager
+<chongci.myapplication.view.fragment.ChinaFragment.NoScrollViewPager
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/vp_live"></android.support.v4.view.ViewPager>
+    android:id="@+id/vp_live"></chongci.myapplication.view.fragment.ChinaFragment.NoScrollViewPager>>
 
 
 </LinearLayout>

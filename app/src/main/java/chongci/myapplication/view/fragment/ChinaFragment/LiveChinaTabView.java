@@ -1,6 +1,11 @@
 package chongci.myapplication.view.fragment.ChinaFragment;
 
+import android.provider.ContactsContract;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by a on 2017/9/15.

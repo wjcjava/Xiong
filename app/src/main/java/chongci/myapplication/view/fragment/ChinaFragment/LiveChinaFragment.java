@@ -1,5 +1,6 @@
 package chongci.myapplication.view.fragment.ChinaFragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -8,6 +9,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +18,26 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import chongci.myapplication.R;
+import chongci.myapplication.activity.prosentactivity.DengLuActivity;
+import chongci.myapplication.activity.prosentactivity.GeRenActivity;
 import chongci.myapplication.dao.ChangeBeanDao;
 import chongci.myapplication.dao.DaoMaster;
 import chongci.myapplication.dao.DaoSession;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 /**
@@ -30,253 +45,208 @@ import chongci.myapplication.dao.DaoSession;
  */
 
 public class LiveChinaFragment extends BaseFragment {
-    Message message;
+    Message message,messagee;
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
             if(msg.what==1){
                 adapter = new FindtabAdapter(getChildFragmentManager(),fragmentList,mTi);
 
-
                 vp_live.setAdapter(adapter);
+                tab_live.setupWithViewPager(vp_live);
+            }else if(msg.what==2){
 
+                users.clear();
+                userss.clear();
+                mTi.clear();
+                fragmentList.clear();
+
+                users = changeBeanDao.queryBuilder()
+                        .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
+                        .build().list();
+
+                userss = changeBeanDao.queryBuilder()
+                        .where(ChangeBeanDao.Properties.Type.eq("")).limit(100)
+                        .build().list();
+
+                for (int i = 0; i < users.size(); i++) {
+                    mTi.add(users.get(i).getTitle());
+                    TestFm testFm = new TestFm().newInstance(users.get(i).getUrl(), i);
+                    fragmentList.add(testFm);
+                }
+                tab_live.setTabMode(TabLayout.MODE_SCROLLABLE);//设置tab模式，当前为系统默认模式
+                adapter = new FindtabAdapter(getChildFragmentManager(), fragmentList, mTi);
+                vp_live.setAdapter(adapter);
                 tab_live.setupWithViewPager(vp_live);
             }
-
-
-
-
         }
     };
     FindtabAdapter adapter;
-    private HorizontalScrollView scrollView;
     ImageView imageView_live;
     RelativeLayout liveChinaItemNotNet;
     FrameLayout fmLivechina;
     TabLayout tab_live;
-    ViewPager vp_live;
-ChangeBeanDao changeBeanDao;
-List<String>mTitleList=new ArrayList<>();
-    List<String>sTitleList=new ArrayList<>();
-    List<String> urls=new ArrayList<>();
+    NoScrollViewPager vp_live;
+    ChangeBeanDao changeBeanDao;
     private List<TestFm> fragmentList = new ArrayList<TestFm>();
     private List<ChangeBean> users;
     private List<ChangeBean> userss;
+    List<AddressBean.TablistBean> list=new ArrayList<>();
+    List<AddressBean.AlllistBean> list1=new ArrayList<>();
+
     List<String>   mTi=new ArrayList<>();
+    private TextView tv_chinatype;
 
     @Override
     protected void initData() {
-
-            for(int i=0;i<users.size();i++){
-            Log.e("aaaaaaaaa++++++",users.size()+"dfghjkkl"+"---------"+users.get(i).getType()+000+users.get(i).getUrl()+77777+users.get(i).getTitle());
-            mTi.add(users.get(i).getTitle());
-            TestFm testFm=new TestFm().newInstance(users.get(i).getUrl(),i);
-            fragmentList.add(testFm);
-        }
-
-
-
-
-
-
-        tab_live.setTabMode(TabLayout.MODE_SCROLLABLE);//设置tab模式，当前为系统默认模式
-        tab_live.addTab(tab_live.newTab().setText(sTitleList.get(0)));//添加tab选项卡
-        tab_live.addTab(tab_live.newTab().setText(sTitleList.get(1)));
-        tab_live.addTab(tab_live.newTab().setText(sTitleList.get(2)));
-        tab_live.addTab(tab_live.newTab().setText(sTitleList.get(3)));
-
-
-
-
-        adapter = new FindtabAdapter(getChildFragmentManager(),fragmentList,mTi);
-
-
-        vp_live.setAdapter(adapter);
-
-        tab_live.setupWithViewPager(vp_live);
-
-
-
     }
-
-
-
-
-
 
     @Override
     protected void initView(View view) {
-
-        sTitleList.add("八达岭");
-        sTitleList.add("泰山");
-        sTitleList.add("黄山");
-        sTitleList.add("凤凰古城");
-        sTitleList.add("峨眉山");
-//        sTitleList.add("张家界");
-//        sTitleList.add("黔县");
-//        sTitleList.add("中央电视台");
-//        sTitleList.add("恒山悬空寺");
-        sTitleList.add("黄果树");
-        sTitleList.add("黄龙");
-//        sTitleList.add("婺源");
-        sTitleList.add("武夷山");
-//        sTitleList.add("龙虎山");
-//       sTitleList.add("松陵少林寺");
-        sTitleList.add("承德避暑山庄");
-        sTitleList.add("敦煌月牙泉");
-        sTitleList.add("都江堰");
-        sTitleList.add("山海关");
-//       sTitleList.add("水长城");
-//        sTitleList.add("嘉峪关");
-//        sTitleList.add("天山");
-//        sTitleList.add("乌镇");
-//        sTitleList.add("青海湖鸟岛");
-//       sTitleList.add("金丝猴");
-//        sTitleList.add("朱鹮");
-//        sTitleList.add("丹霞山");
-//        sTitleList.add("天涯海角");
-//        sTitleList.add("雪乡");
-        sTitleList.add("乐山大佛");
-        sTitleList.add("哈尼梯田");
-        urls.add("badaling");
-        urls.add("taishan");
-        urls.add("huangshan");
-        urls.add("fenghuanggucheng");
-
-        urls.add("emeishan");
-//        urls.add("zhangjiajie");
-//        urls.add("qianxian");
-//        urls.add("zhongyangdianshitai");
-//        urls.add("hengshanxuankongsi");
-        urls.add("huangguoshu");
-        urls.add("huanglong");
-//        urls.add("wuyuan");
-
-      urls.add("wuyishan");
-                   
-//        urls.add("songlingshaolingsi");
-        urls.add("chengdebishushanzhuang");
-        urls.add("dunhuangyueyaquan");
-        urls.add("dujiangyan");
-        urls.add("shanhaiguan");
-//        urls.add("shuichangcheng");
-
-
-//        urls.add("jiayuguan");
-//        urls.add("tianshan");
-//        urls.add("wuzhen");
-//        urls.add("qinhaihuniaodao");
-//        urls.add("jinsihou");
-//        urls.add("zhuhuan");
-//        urls.add("danxiashan");
-//        urls.add("tianyahaijiao");
-
-//        urls.add("xuexiang");
-        urls.add("leshandafo");
-        urls.add("hanititian");
+        tv_chinatype = (TextView) view.findViewById(R.id.tv_chinatype);
+        tv_chinatype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), GeRenActivity.class);
+                startActivity(intent);
+            }
+        });
+        fmLivechina= (FrameLayout) view.findViewById(R.id.fm_livechina);
+        liveChinaItemNotNet= (RelativeLayout) view.findViewById(R.id.live_china_item_not_net);
+        if(isNetworkAvailable(getActivity())==true){
+            liveChinaItemNotNet.setVisibility(View.GONE);
+            View view1=LayoutInflater.from(getActivity()).inflate(R.layout.liveitem_layout,null);
+            imageView_live= (ImageView) view1.findViewById(R.id.imageView_live);
+            imageView_live.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getActivity(),LiveSwichActivity.class);
+                    startActivity(intent);
+                }
+            });
 
 
 
+            tab_live= (TabLayout) view1.findViewById(R.id.tab_live);
+            vp_live= (NoScrollViewPager) view1.findViewById(R.id.vp_live);
+            fmLivechina.addView(view1);
+        }else{
+            liveChinaItemNotNet.setVisibility(View.VISIBLE);
 
+            ImageView moren= (ImageView) view.findViewById(R.id.moren);
+            moren.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(getActivity(), "tvxq7.db", null);
-                 DaoMaster daoMaster = new DaoMaster(devOpenHelper.getReadableDb());
-                 DaoSession daoSession = daoMaster.newSession();
-                 changeBeanDao = daoSession.getChangeBeanDao();
+                    if(isNetworkAvailable(getActivity())==true) {
+                        ProgressDialog mypDialog=new ProgressDialog(getActivity());
+                        //实例化
+                        View view2 = LayoutInflater.from(getActivity()).inflate(R.layout.pro_layout, null);
+                        mypDialog.setView(view2);
+//                        mypDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+                        mypDialog.setCancelable(true);
+                        //设置ProgressDialog 是否可以按退回按键取消
+                        mypDialog.show();
+                        liveChinaItemNotNet.setVisibility(View.GONE);
+                        View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.liveitem_layout, null);
+                        imageView_live = (ImageView) view1.findViewById(R.id.imageView_live);
+                        imageView_live.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), LiveSwichActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
+                        tab_live = (TabLayout) view1.findViewById(R.id.tab_live);
+                        vp_live = (NoScrollViewPager) view1.findViewById(R.id.vp_live);
+                        fmLivechina.addView(view1);
+                        changeview();
+                        mypDialog.dismiss();
+                    }
+                }
+            });
+        }
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(getActivity(), "tvxq27.db", null);
+        DaoMaster daoMaster = new DaoMaster(devOpenHelper.getReadableDb());
+        DaoSession daoSession = daoMaster.newSession();
+        changeBeanDao = daoSession.getChangeBeanDao();
+
         users = changeBeanDao.queryBuilder()
                 .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
                 .build().list();
 
-        for (ChangeBean user : users) {
-            Log.e("-----fffffffffffff", "query: " + user.toString());
-        }
-
         userss = changeBeanDao.queryBuilder()
                 .where(ChangeBeanDao.Properties.Type.eq("")).limit(100)
                 .build().list();
-        for (ChangeBean user : userss) {
-            Log.e("ooooooooooo--------", "query: " + user.toString());
-        }
-
-
-                               if(users.size()==0) {
-                                   for (int i = 0; i < 4; i++) {
-                                       ChangeBean user = new ChangeBean(null, sTitleList.get(i), urls.get(i), "1", "");
-                                       changeBeanDao.insert(user);
-                                   }
-
-                                   for (int d = 4; d < sTitleList.size(); d++) {
-                                       ChangeBean userr = new ChangeBean(null, sTitleList.get(d), urls.get(d), "", "");
-                                       changeBeanDao.insert(userr);
-                                       Log.e("ooooooooooo--------", "lllllllllll" + userr.toString());
-                                   }
-
-
-                                   users = changeBeanDao.queryBuilder()
-                                           .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
-                                           .build().list();
-                                   for (ChangeBean user : users) {
-                                       Log.e("aaaaaaaaaaaddd--------", "query: " + user.toString());
-                                   }
-
-
-
-
-                               }
-//                               }else{
-//                                   users = changeBeanDao.queryBuilder()
-//                                           .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
-//                                           .build().list();
-//                                   for (ChangeBean user : users) {
-//                                       Log.e("------------", "query: " + user.toString());
-//                                   }
-//                               }
-
-
-
-
-
-
-
-
-
-
-        scrollView = (HorizontalScrollView)view.findViewById(R.id.scrollView);
-        fmLivechina= (FrameLayout) view.findViewById(R.id.fm_livechina);
-        liveChinaItemNotNet= (RelativeLayout) view.findViewById(R.id.live_china_item_not_net);
-
-
-        if(isNetworkAvailable(getActivity())==true){
-            liveChinaItemNotNet.setVisibility(View.GONE);
-            View view1=LayoutInflater.from(getActivity()).inflate(R.layout.liveitem_layout,null);
-             imageView_live= (ImageView) view1.findViewById(R.id.imageView_live);
-              imageView_live.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      Intent intent=new Intent(getActivity(),LiveSwichActivity.class);
-                      startActivity(intent);
-                  }
-              });
-
-
-
-             tab_live= (TabLayout) view1.findViewById(R.id.tab_live);
-            vp_live= (ViewPager) view1.findViewById(R.id.vp_live);
-            fmLivechina.addView(view1);
-        }else{
-            liveChinaItemNotNet.setVisibility(View.VISIBLE);}
+        changeview();
 
     }
+
+ private void changeview(){
+     if(isNetworkAvailable(getActivity())){
+         OkHttpClient okHttpClient = new OkHttpClient();
+         Request request = new Request.Builder()
+                 .url("http://www.ipanda.com/kehuduan/PAGE14501775094142282/index.json")
+                 .build();
+         Call call = okHttpClient.newCall(request);
+         call.enqueue(new Callback() {
+             @Override
+             public void onFailure(Call call, IOException e) {
+
+             }
+
+             @Override
+             public void onResponse(Call call, Response response) throws IOException {
+                 final String aa = response.body().string();
+                 Gson gson = new Gson();
+                 AddressBean tiaoz = gson.fromJson(aa, AddressBean.class);
+                 list.addAll(tiaoz.getTablist());
+                 list1.addAll(tiaoz.getAlllist());
+                 getActivity(). runOnUiThread(new Runnable() {
+                     @Override
+                     public void run() {
+                         if(users.size()==0) {
+                             for (int i = 0; i < list.size(); i++) {
+                                 ChangeBean user = new ChangeBean(null, list.get(i).getTitle(), list.get(i).getUrl(), "1", "");
+                                 changeBeanDao.insert(user);
+                             }
+                             for (int d = 0; d <list1.size() ; d++) {
+                                 ChangeBean usero = changeBeanDao.queryBuilder()
+                                         .where(ChangeBeanDao.Properties.Title.eq(list1.get(d).getTitle()))
+                                         .build().unique();
+                                 if(usero!=null){
+
+                                 }else{
+                                     ChangeBean userr = new ChangeBean(null, list1.get(d).getTitle(), list1.get(d).getUrl(), "", "");
+                                     changeBeanDao.insert(userr);
+                                 }
+                             }
+
+                             users = changeBeanDao.queryBuilder()
+                                     .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
+                                     .build().list();
+                             for (ChangeBean user : users) {
+                             }
+                         }
+                         messagee= new Message();
+                         messagee.what = 2;
+                         handler.sendMessage(messagee);
+
+                     }
+                 });
+             }
+         });
+     }
+ }
 
     @Override
     public int getFragmentLayoutId() {
         return R.layout.livechina_layout;
 
     }
-
-
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context
@@ -296,39 +266,32 @@ List<String>mTitleList=new ArrayList<>();
         return false;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
-        message= new Message();
-        message.what = 1;
-        handler.sendMessage(message);
-        users.clear();
-        userss.clear();
-        mTi.clear();
-        fragmentList.clear();
+        if(isNetworkAvailable(getActivity())){
+            message= new Message();
+            message.what = 1;
+            handler.sendMessage(message);
+            users.clear();
+            userss.clear();
+            mTi.clear();
+            fragmentList.clear();
 
-        users = changeBeanDao.queryBuilder()
-                .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
-                .build().list();
+            users = changeBeanDao.queryBuilder()
+                    .where(ChangeBeanDao.Properties.Type.eq("1")).limit(100)
+                    .build().list();
 
-        for (ChangeBean user : users) {
-            Log.e("ppppppppppp", "query: " + user.toString());
+            userss = changeBeanDao.queryBuilder()
+                    .where(ChangeBeanDao.Properties.Type.eq("")).limit(100)
+                    .build().list();
+
+            for(int i=0;i<users.size();i++){
+
+                mTi.add(users.get(i).getTitle());
+                TestFm testFm=new TestFm().newInstance(users.get(i).getUrl(),i);
+                fragmentList.add(testFm);
+            }
         }
-
-        userss = changeBeanDao.queryBuilder()
-                .where(ChangeBeanDao.Properties.Type.eq("")).limit(100)
-                .build().list();
-        for (ChangeBean user : userss) {
-            Log.e("pppppppppppppp", "query: " + user.toString());
-        }
-
-        for(int i=0;i<users.size();i++){
-            Log.e("aaaaaaaaa++++++",users.size()+"dfghjkkl"+"---------"+users.get(i).getType()+000+users.get(i).getUrl()+77777+users.get(i).getTitle());
-            mTi.add(users.get(i).getTitle());
-            TestFm testFm=new TestFm().newInstance(users.get(i).getUrl(),i);
-            fragmentList.add(testFm);
-        }
-
     }
 }

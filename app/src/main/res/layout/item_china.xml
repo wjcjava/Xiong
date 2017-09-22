@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400px"
         android:id="@+id/play_layout"
         >
 
@@ -12,7 +13,8 @@
             android:id="@+id/live_china_tab_item_img"
             android:layout_width="match_parent"
             android:scaleType="fitXY"
-            android:layout_height="600px"
+            android:layout_height="400px"
+            android:visibility="gone"
             />
 
         <ImageView
@@ -21,9 +23,27 @@
             android:src="@drawable/lpanda_pause"
             android:layout_centerInParent="true"
             android:id="@+id/btn_play"
+            android:visibility="gone"
             />
 
 
+        <fm.jiecao.jcvideoplayer_lib.JCVideoPlayer
+            android:id="@+id/live_videocontroller1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+
+        </fm.jiecao.jcvideoplayer_lib.JCVideoPlayer>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView2"-->
+            <!--android:layout_width="50dp"-->
+              <!--android:layout_height="50dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+             <!--/>-->
 
 
     </RelativeLayout>
@@ -32,8 +52,8 @@
         android:id="@+id/live_china_tab_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40px"
-        android:textSize="40px"
+        android:layout_marginLeft="30px"
+        android:textSize="30px"
 
         android:layout_marginTop="10dp"
         android:layout_marginBottom="12px"
@@ -87,13 +107,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/livechina_jianjie_underline"
-            android:layout_marginLeft="40px"
-            android:layout_marginRight="40px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
             android:lineSpacingExtra="12px"
-            android:paddingBottom="32px"
-            android:paddingTop="72px"
+            android:paddingBottom="22px"
+            android:paddingTop="62px"
             android:textColor="#000000"
-            android:textSize="40px" />
+            android:textSize="30px" />
     </RelativeLayout>
 
     <View

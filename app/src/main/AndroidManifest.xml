@@ -25,7 +25,7 @@
     <application
         android:name=".activity.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_ipnda"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -51,7 +51,8 @@
         <activity android:name=".activity.WebActivity" />
         <activity
             android:name=".activity.VideoActivity"
-            android:screenOrientation="landscape" />
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
@@ -83,6 +84,7 @@
             android:name=".activity.Live_VedioActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".activity.prosentactivity.qitaactivity.YongHuActivity"></activity>
+        <activity android:name=".activity.gungun_activity.GunGun_things"/>
     </application>
 
 </manifest>

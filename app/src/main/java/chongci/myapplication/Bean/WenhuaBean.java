@@ -1,12 +1,13 @@
 package chongci.myapplication.Bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/25.
  */
 
-public class WenhuaBean {
+public class WenhuaBean implements Serializable{
 
 
     private List<BigImgBean> bigImg;
@@ -124,7 +125,7 @@ public class WenhuaBean {
         }
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable{
         /**
          * url : http://live.ipanda.com/2017/09/04/VIDE0iASvHHOqMzcro3w31s1170904.shtml
          * image : http://p1.img.cctvpic.com/photoworkspace/2017/09/04/2017090417463096500.jpg

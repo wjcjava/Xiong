@@ -1,17 +1,15 @@
 package chongci.myapplication.view.fragment.ChinaFragment;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by a on 2017/9/15.
  */
 @Entity
 public class ChangeBean {
-
-
     @Id
     private Long id;
     @Property(nameInDb="title")
