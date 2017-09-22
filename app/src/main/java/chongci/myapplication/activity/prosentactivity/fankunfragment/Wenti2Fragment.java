@@ -14,7 +14,6 @@ import chongci.myapplication.R;
  */
 public class Wenti2Fragment extends Fragment {
 
-
     public Wenti2Fragment() {
         // Required empty public constructor
     }
